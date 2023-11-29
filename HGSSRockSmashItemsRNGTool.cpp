@@ -26,8 +26,8 @@ int main() {
     itemNames[2] = new string[8]{"Red Shard", "Yellow Shard", "Helix Fossil (HG) / Dome Fossil (SS)", "Max Ether", "Blue Shard", "Green Shard", "Old Amber", "Max Revive"};
 
     int* itemTresholds[2];
-    itemTresholds[0] = new int[7]{24, 44, 54, 64, 74, 94, 99};
-    itemTresholds[1] = new int[8]{24, 44, 54, 64, 74, 84, 94, 99};
+    itemTresholds[0] = new int[8]{0, 25, 45, 55, 65, 75, 95, 100};
+    itemTresholds[1] = new int[9]{0, 25, 45, 55, 65, 75, 85, 95, 100};
 
     cout << "1  Cliff Cave\n2  Violet City\n3  Tohjo Falls\n4  Route 3\n5  Mt. Silver\n6  Cerulean Cave 1F\n7  Cerulean Cave 2F\n8  Cerulean Cave B1F\n"
         << "9  Cianwood City\n10 Dark Cave\n11 Rock Tunnel\n12 Route 19\n13 Vemillion City\n14 Victory Road\n15 Ruins of Alph\n\n";
@@ -109,7 +109,7 @@ int main() {
             tempSeed = LCRNG(tempSeed);
             tempAdvances++;
 
-            if (getHighSeed(tempSeed) % 100 <= itemTresholds[itemNamesIndex][itemIndex - 1] && (itemIndex < 2 || getHighSeed(tempSeed) % 100 <= itemTresholds[itemNamesIndex][itemIndex - 1])) {
+            if (getHighSeed(tempSeed) % 100 >= itemTresholds[itemNamesIndex][itemIndex - 1] && getHighSeed(tempSeed) % 100 < itemTresholds[itemNamesIndex][itemIndex]) {
                 itemFound = true;
                 printf("\n\nCurrent Seed: %08X | Advances: %lu\n\n", seed, advances);
             }
