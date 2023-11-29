@@ -52,12 +52,16 @@ int main() {
     bool wildEncounterCheck;
 
     while (true) {
-        advances = 0, itemNamesIndex = 1, itemsTotalNumber = 8, wildEncounterCheck = true;
+        itemNamesIndex = 1, itemsTotalNumber = 8, advances = 0, wildEncounterCheck = true;
 
         do {
             cout << "Insert the location number: ";
-            cin >> location;
-        } while (location < 1 || location > 15);
+
+            if (!(cin >> location)) {
+                cin.clear();
+                cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+            }
+        } while (!cin || location < 1 || location > 15);
 
         switch (location) {
             case 1:
@@ -84,13 +88,17 @@ int main() {
 
         do {
             cout << "Insert the wanted item number: ";
-            cin >> itemIndex;
-        } while (itemIndex < 1 || itemIndex > itemsTotalNumber);
 
-        cout << endl << "Insert the Initial Seed: ";
+            if (!(cin >> itemIndex)) {
+                cin.clear();
+                cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+            }
+        } while (!cin || itemIndex < 1 || itemIndex > itemsTotalNumber);
+
+        cout << endl << "Insert the initial seed: ";
         scanf("%X", &currentSeed);
 
-        cout << endl << "Insert the Starting Advances: ";
+        cout << endl << "Insert the current advances: ";
         cin >> currentAdvances;
 
         advance(currentSeed, advances, currentAdvances);
