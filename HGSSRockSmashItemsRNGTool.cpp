@@ -88,13 +88,13 @@ int main() {
                             "Claw Fossil (HG) / Root Fossil (SS)", "Rare Bone"};
     itemNames[1] = new string[8]{"Max Ether", "Revive", "Heart Scale", "Red Shard", "Blue Shard", "Green Shard", "Yellow Shard", "Star Piece"};
     itemNames[2] = new string[8]{"Red Shard", "Yellow Shard", "Helix Fossil (HG) / Dome Fossil (SS)", "Max Ether", "Blue Shard", "Green Shard", "Old Amber", "Max Revive"};
-    short itemNameIndex, itemsTotalNumber, itemTresholdsIndex, location, itemIndex;
+    short itemNameIndex, itemsTotalNumber, itemTresholdIndex, location, itemIndex;
     uint32_t currentSeed;
     bool wildEncounterCheck;
     unsigned long advances, currentAdvances;
 
     while (true) {
-        itemNameIndex = 1, itemsTotalNumber = 8, itemTresholdsIndex = 1, wildEncounterCheck = true, advances = 0;
+        itemNameIndex = 1, itemsTotalNumber = 8, itemTresholdIndex = 1, wildEncounterCheck = true, advances = 0;
 
         sanitizeInput<short>("Insert the location number: ", location, 1, 15);
 
@@ -102,7 +102,7 @@ int main() {
             case 1:
                 itemNameIndex = 0;
                 itemsTotalNumber = 7;
-                itemTresholdsIndex = 0;
+                itemTresholdIndex = 0;
                 break;
             case 2:
             case 3:
@@ -130,6 +130,6 @@ int main() {
         sanitizeInput<unsigned long>("Insert the current advances: ", currentAdvances, 0, ULONG_MAX);
 
         advance(currentSeed, advances, currentAdvances);
-        findItem(currentSeed, wildEncounterCheck, location, advances, itemTresholdsIndex, itemIndex);
+        findItem(currentSeed, wildEncounterCheck, location, advances, itemTresholdIndex, itemIndex);
     }
 }
