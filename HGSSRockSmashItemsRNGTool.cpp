@@ -72,7 +72,7 @@ void findItem(uint32_t seed, bool wildFlag, short location, unsigned long advanc
         tempSeed = LCRNG(tempSeed);
 
         if (isWantedItemCheck(tempSeed, itemTresholdIndex, itemIndex)) {
-            printf("\n\nCurrent Seed: %08X | Advances: %lu\n\n", seed, advances);
+            printf("\n\nTarget seed: %08X | Target advances: %lu\n\n\n", seed, advances);
             break;
         }
 
