@@ -47,7 +47,7 @@ bool isWantedItemCheck(uint32_t seed, short nameIndex, short index) {
     return getHighSeed(seed) % 100 >= itemTresholds[nameIndex][index - 2] && getHighSeed(seed) % 100 < itemTresholds[nameIndex][index - 1];
 }
 
-void findItem(uint32_t seed, bool wildFlag, short location, unsigned long advances, short itemTresholdIndex, short itemIndex) {
+void findItem(uint32_t seed, bool wildFlag, short location, unsigned long advances, short itemThresholdIndex, short itemIndex) {
     uint32_t tempSeed;
 
     while (true) {
@@ -71,7 +71,7 @@ void findItem(uint32_t seed, bool wildFlag, short location, unsigned long advanc
 
         tempSeed = LCRNG(tempSeed);
 
-        if (isWantedItemCheck(tempSeed, itemTresholdIndex, itemIndex)) {
+        if (isWantedItemCheck(tempSeed, itemThresholdIndex, itemIndex)) {
             printf("\n\nTarget seed: %08X | Target advances: %lu\n\n\n", seed, advances);
             break;
         }
@@ -88,13 +88,13 @@ int main() {
                             "Claw Fossil (HG) / Root Fossil (SS)", "Rare Bone"};
     itemNames[1] = new string[8]{"Max Ether", "Revive", "Heart Scale", "Red Shard", "Blue Shard", "Green Shard", "Yellow Shard", "Star Piece"};
     itemNames[2] = new string[8]{"Red Shard", "Yellow Shard", "Helix Fossil (HG) / Dome Fossil (SS)", "Max Ether", "Blue Shard", "Green Shard", "Old Amber", "Max Revive"};
-    short itemNameIndex, itemsTotalNumber, itemTresholdIndex, location, itemIndex;
+    short itemNameIndex, itemsTotalNumber, itemThresholdIndex, location, itemIndex;
     uint32_t currentSeed;
     bool wildEncounterCheck;
     unsigned long advances, currentAdvances;
 
     while (true) {
-        itemNameIndex = 1, itemsTotalNumber = 8, itemTresholdIndex = 1, wildEncounterCheck = true, advances = 0;
+        itemNameIndex = 1, itemsTotalNumber = 8, itemThresholdIndex = 1, wildEncounterCheck = true, advances = 0;
 
         sanitizeInput<short>("Insert the location number: ", location, 1, 15);
 
@@ -102,7 +102,7 @@ int main() {
             case 1:
                 itemNameIndex = 0;
                 itemsTotalNumber = 7;
-                itemTresholdIndex = 0;
+                itemThresholdIndex = 0;
                 break;
             case 2:
             case 3:
@@ -130,6 +130,6 @@ int main() {
         sanitizeInput<unsigned long>("Insert the current advances: ", currentAdvances, 0, ULONG_MAX);
 
         advance(currentSeed, advances, currentAdvances);
-        findItem(currentSeed, wildEncounterCheck, location, advances, itemTresholdIndex, itemIndex);
+        findItem(currentSeed, wildEncounterCheck, location, advances, itemThresholdIndex, itemIndex);
     }
 }
