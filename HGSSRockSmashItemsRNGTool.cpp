@@ -32,10 +32,10 @@ bool itemCheck(uint32_t seed, short index) {
 
 bool isWantedItemCheck(uint32_t seed, short nameIndex, short index) {
     int* itemTresholds[2];
-    itemTresholds[0] = new int[8]{0, 25, 45, 55, 65, 75, 95, 100};
-    itemTresholds[1] = new int[9]{0, 25, 45, 55, 65, 75, 85, 95, 100};
+    itemTresholds[0] = new int[7]{25, 45, 55, 65, 75, 95, 100};
+    itemTresholds[1] = new int[8]{25, 45, 55, 65, 75, 85, 95, 100};
 
-    return getHighSeed(seed) % 100 >= itemTresholds[nameIndex][index - 1] && getHighSeed(seed) % 100 < itemTresholds[nameIndex][index];
+    return getHighSeed(seed) % 100 >= itemTresholds[nameIndex][index - 2] && getHighSeed(seed) % 100 < itemTresholds[nameIndex][index - 1];
 }
 
 int main() {
@@ -46,26 +46,23 @@ int main() {
                             "Claw Fossil (HG) / Root Fossil (SS)", "Rare Bone"};
     itemNames[1] = new string[8]{"Max Ether", "Revive", "Heart Scale", "Red Shard", "Blue Shard", "Green Shard", "Yellow Shard", "Star Piece"};
     itemNames[2] = new string[8]{"Red Shard", "Yellow Shard", "Helix Fossil (HG) / Dome Fossil (SS)", "Max Ether", "Blue Shard", "Green Shard", "Old Amber", "Max Revive"};
-    short location, itemNamesIndex, itemsTotalNumber, itemIndex;
+    short location, itemNameIndex, itemTresholdsIndex, itemsTotalNumber, itemIndex;
     uint32_t currentSeed, tempSeed;
     unsigned long currentAdvances, advances;
     bool wildEncounterCheck;
 
     while (true) {
-        itemNamesIndex = 1, itemsTotalNumber = 8, advances = 0, wildEncounterCheck = true;
+        itemNameIndex = 1, itemTresholdsIndex = 1; itemsTotalNumber = 8, advances = 0, wildEncounterCheck = true;
 
-        do {
-            cout << "Insert the location number: ";
-
-            if (!(cin >> location)) {
-                cin.clear();
-                cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-            }
-        } while (!cin || location < 1 || location > 15);
+        while ((cout << "Insert the location number: ") && (!(cin >> location) || (location < 1 || location > 15))) {
+            cin.clear();
+            cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+        }
 
         switch (location) {
             case 1:
-                itemNamesIndex = 0;
+                itemNameIndex = 0;
+                itemTresholdsIndex = 0;
                 itemsTotalNumber = 7;
                 break;
             case 2:
@@ -76,36 +73,30 @@ int main() {
                 wildEncounterCheck = false;
                 break;
             case 15:
-                itemNamesIndex = 2;
+                itemNameIndex = 2;
                 break;
         }
 
         for (int i = 0; i < itemsTotalNumber; i++) {
-            cout << endl << i + 1 << " " << itemNames[itemNamesIndex][i];
+            cout << "\n" << i + 1 << " " << itemNames[itemNameIndex][i];
         }
 
-        cout << endl << endl;
+        cout << "\n\n";
 
-        do {
-            cout << "Insert the wanted item number: ";
+        while ((cout << "Insert the wanted item number: ") && (!(cin >> itemIndex) || (itemIndex < 1 || itemIndex > itemsTotalNumber))) {
+            cin.clear();
+            cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+        }
 
-            if (!(cin >> itemIndex)) {
-                cin.clear();
-                cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-            }
-        } while (!cin || itemIndex < 1 || itemIndex > itemsTotalNumber);
-
-        cout << endl << "Insert the initial seed: ";
+        cout << "\nInsert the initial seed: ";
         scanf("%X", &currentSeed);
 
-        do {
-            cout << "Insert the current advances: ";
+        cout << "\n";
 
-            if (!(cin >> currentAdvances)) {
-                cin.clear();
-                cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-            }
-        } while (!cin || currentAdvances < 1);
+        while ((cout << "Insert the current advances: ") && !(cin >> currentAdvances)) {
+            cin.clear();
+            cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+        }
 
         advance(currentSeed, advances, currentAdvances);
 
@@ -130,7 +121,7 @@ int main() {
 
             tempSeed = LCRNG(tempSeed);
 
-            if (isWantedItemCheck(tempSeed, itemNamesIndex, itemIndex)) {
+            if (isWantedItemCheck(tempSeed, itemTresholdsIndex, itemIndex)) {
                 printf("\n\nCurrent Seed: %08X | Advances: %lu\n\n", currentSeed, advances);
                 break;
             }
