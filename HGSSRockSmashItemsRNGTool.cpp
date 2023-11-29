@@ -46,6 +46,39 @@ bool isWantedItemCheck(uint32_t seed, short nameIndex, short index) {
     return getHighSeed(seed) % 100 >= itemTresholds[nameIndex][index - 2] && getHighSeed(seed) % 100 < itemTresholds[nameIndex][index - 1];
 }
 
+void findItem(uint32_t seed, bool wildFlag, short location, unsigned long advances, short itemTresholdIndex, short itemIndex) {
+    uint32_t tempSeed;
+
+    while (true) {
+        tempSeed = seed;
+
+        if (wildFlag) {
+            tempSeed = LCRNG(tempSeed);
+
+            if (encounterCheck(tempSeed, location)) {
+                advance(seed, advances);
+                continue;
+            }
+        }
+
+        tempSeed = LCRNG(tempSeed);
+
+        if (itemCheck(tempSeed, location)) {
+            advance(seed, advances);
+            continue;
+        }
+
+        tempSeed = LCRNG(tempSeed);
+
+        if (isWantedItemCheck(tempSeed, itemTresholdIndex, itemIndex)) {
+            printf("\n\nCurrent Seed: %08X | Advances: %lu\n\n", seed, advances);
+            break;
+        }
+
+        advance(seed, advances);
+    }
+}
+
 int main() {
     cout << "1  Cliff Cave\n2  Violet City\n3  Tohjo Falls\n4  Route 3\n5  Mt. Silver\n6  Cerulean Cave 1F\n7  Cerulean Cave 2F\n8  Cerulean Cave B1F\n"
         << "9  Cianwood City\n10 Dark Cave\n11 Rock Tunnel\n12 Route 19\n13 Vemillion City\n14 Victory Road\n15 Ruins of Alph\n\n";
@@ -55,7 +88,7 @@ int main() {
     itemNames[1] = new string[8]{"Max Ether", "Revive", "Heart Scale", "Red Shard", "Blue Shard", "Green Shard", "Yellow Shard", "Star Piece"};
     itemNames[2] = new string[8]{"Red Shard", "Yellow Shard", "Helix Fossil (HG) / Dome Fossil (SS)", "Max Ether", "Blue Shard", "Green Shard", "Old Amber", "Max Revive"};
     short itemNameIndex, itemsTotalNumber, itemTresholdsIndex, location, itemIndex;
-    uint32_t currentSeed, tempSeed;
+    uint32_t currentSeed;
     bool wildEncounterCheck;
     unsigned long advances, currentAdvances;
 
@@ -96,34 +129,6 @@ int main() {
         sanitizeInput<unsigned long>("Insert the current advances: ", currentAdvances, 0, ULONG_MAX);
 
         advance(currentSeed, advances, currentAdvances);
-
-        while (true) {
-            tempSeed = currentSeed;
-
-            if (wildEncounterCheck) {
-                tempSeed = LCRNG(tempSeed);
-
-                if (encounterCheck(tempSeed, location)) {
-                    advance(currentSeed, advances);
-                    continue;
-                }
-            }
-
-            tempSeed = LCRNG(tempSeed);
-
-            if (itemCheck(tempSeed, location)) {
-                advance(currentSeed, advances);
-                continue;
-            }
-
-            tempSeed = LCRNG(tempSeed);
-
-            if (isWantedItemCheck(tempSeed, itemTresholdsIndex, itemIndex)) {
-                printf("\n\nCurrent Seed: %08X | Advances: %lu\n\n", currentSeed, advances);
-                break;
-            }
-
-            advance(currentSeed, advances);
-        }
+        findItem(currentSeed, wildEncounterCheck, location, advances, itemTresholdsIndex, itemIndex);
     }
 }
