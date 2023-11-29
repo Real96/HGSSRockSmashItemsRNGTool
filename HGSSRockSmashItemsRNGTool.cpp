@@ -98,8 +98,14 @@ int main() {
         cout << endl << "Insert the initial seed: ";
         scanf("%X", &currentSeed);
 
-        cout << endl << "Insert the current advances: ";
-        cin >> currentAdvances;
+        do {
+            cout << "Insert the current advances: ";
+
+            if (!(cin >> currentAdvances)) {
+                cin.clear();
+                cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+            }
+        } while (!cin || currentAdvances < 1);
 
         advance(currentSeed, advances, currentAdvances);
 
