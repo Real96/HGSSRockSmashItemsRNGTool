@@ -7,10 +7,6 @@ uint32_t LCRNG(uint32_t seed) {
     return 0x41C64E6D * seed + 0x6073;
 }
 
-uint32_t LCRNGR(uint32_t seed) {
-    return 0xEEB9EB65 * seed + 0xA3561A1;
-}
-
 uint16_t getHighSeed(uint32_t seed) {
     return seed >> 16;
 }
