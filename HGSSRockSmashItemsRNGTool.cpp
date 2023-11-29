@@ -7,15 +7,23 @@ uint32_t LCRNG(uint32_t seed) {
     return 0x41C64E6D * seed + 0x6073;
 }
 
-uint16_t getHighSeed(uint32_t seed) {
-    return seed >> 16;
-}
-
 void advance(uint32_t &seed, unsigned long &advances, unsigned long n = 1) {
     for (int i = 0; i < n; i++) {
         seed = LCRNG(seed);
         advances++;
     }
+}
+
+template <typename T>
+void sanitizeInput(string output, T &index, T lowLimit, T highLimit) {
+    while ((cout << output) && (!(cin >> index) || (index < lowLimit || index > highLimit))) {
+        cin.clear();
+        cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+    }
+}
+
+uint16_t getHighSeed(uint32_t seed) {
+    return seed >> 16;
 }
 
 bool encounterCheck(uint32_t seed, short index) {
@@ -46,24 +54,21 @@ int main() {
                             "Claw Fossil (HG) / Root Fossil (SS)", "Rare Bone"};
     itemNames[1] = new string[8]{"Max Ether", "Revive", "Heart Scale", "Red Shard", "Blue Shard", "Green Shard", "Yellow Shard", "Star Piece"};
     itemNames[2] = new string[8]{"Red Shard", "Yellow Shard", "Helix Fossil (HG) / Dome Fossil (SS)", "Max Ether", "Blue Shard", "Green Shard", "Old Amber", "Max Revive"};
-    short location, itemNameIndex, itemTresholdsIndex, itemsTotalNumber, itemIndex;
+    short itemNameIndex, itemsTotalNumber, itemTresholdsIndex, location, itemIndex;
     uint32_t currentSeed, tempSeed;
-    unsigned long currentAdvances, advances;
     bool wildEncounterCheck;
+    unsigned long advances, currentAdvances;
 
     while (true) {
-        itemNameIndex = 1, itemTresholdsIndex = 1; itemsTotalNumber = 8, advances = 0, wildEncounterCheck = true;
+        itemNameIndex = 1, itemsTotalNumber = 8, itemTresholdsIndex = 1, wildEncounterCheck = true, advances = 0;
 
-        while ((cout << "Insert the location number: ") && (!(cin >> location) || (location < 1 || location > 15))) {
-            cin.clear();
-            cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-        }
+        sanitizeInput<short>("Insert the location number: ", location, 1, 15);
 
         switch (location) {
             case 1:
                 itemNameIndex = 0;
-                itemTresholdsIndex = 0;
                 itemsTotalNumber = 7;
+                itemTresholdsIndex = 0;
                 break;
             case 2:
             case 3:
@@ -82,21 +87,13 @@ int main() {
         }
 
         cout << "\n\n";
-
-        while ((cout << "Insert the wanted item number: ") && (!(cin >> itemIndex) || (itemIndex < 1 || itemIndex > itemsTotalNumber))) {
-            cin.clear();
-            cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-        }
+        sanitizeInput<short>("Insert the wanted item number: ", itemIndex, 1, itemsTotalNumber);
 
         cout << "\nInsert the initial seed: ";
         scanf("%X", &currentSeed);
 
         cout << "\n";
-
-        while ((cout << "Insert the current advances: ") && !(cin >> currentAdvances)) {
-            cin.clear();
-            cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-        }
+        sanitizeInput<unsigned long>("Insert the current advances: ", currentAdvances, 0, ULONG_MAX);
 
         advance(currentSeed, advances, currentAdvances);
 
