@@ -1,6 +1,6 @@
 #include <iostream>
 #include <math.h>
-#include <climits>
+#include <limits>
 #include <string>
 #include <string_view>
 #include <array>
@@ -36,7 +36,7 @@ void sanitizeHexInput(uint32_t &seed) {
         cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
     }
 
-    seed = strtoul(stringSeed.c_str(), nullptr, 16);
+    seed = stoul(stringSeed, nullptr, 16);
 }
 
 uint16_t getHighSeed(uint32_t seed) {
