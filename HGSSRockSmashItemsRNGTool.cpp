@@ -36,8 +36,7 @@ void sanitizeHexInput(uint32_t &seed) {
         cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
     }
 
-    char* endPtr;
-    seed = strtoul(stringSeed.c_str(), &endPtr, 16);
+    seed = strtoul(stringSeed.c_str(), nullptr, 16);
 }
 
 uint16_t getHighSeed(uint32_t seed) {
