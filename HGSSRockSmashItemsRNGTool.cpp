@@ -12,7 +12,7 @@ uint32_t LCRNG(uint32_t seed) {
 }
 
 void advance(uint32_t &seed, unsigned long &advances, unsigned long n = 1) {
-    for (unsigned i = 0; i < n; i++) {
+    for (unsigned long i = 0; i < n; i++) {
         seed = LCRNG(seed);
         advances++;
     }
