@@ -44,10 +44,10 @@ bool itemCheck(uint32_t seed, short index) {
 
 bool isWantedItemCheck(uint32_t seed, short nameIndex, short index) {
     
-    static constexpr array<int, 7> itemThresholds1{ 25, 45, 55, 65, 75, 95, 100 };
-    static constexpr array<int, 8> itemThresholds2{ 25, 45, 55, 65, 75, 85, 95, 100 };
+    static constexpr array<int, 7> itemThresholds0{ 25, 45, 55, 65, 75, 95, 100 };
+    static constexpr array<int, 8> itemThresholds1{ 25, 45, 55, 65, 75, 85, 95, 100 };
 
-    static constexpr array<const int*, 2> itemThresholds{ itemThresholds1.data() , itemThresholds2.data() };
+    static constexpr array<const int*, 2> itemThresholds{ itemThresholds0.data() , itemThresholds1.data() };
 
     return getHighSeed(seed) % 100 >= itemThresholds[nameIndex][index - 2] && getHighSeed(seed) % 100 < itemThresholds[nameIndex][index - 1];
 }
@@ -89,12 +89,12 @@ int main() {
     cout << "1  Cliff Cave\n2  Violet City\n3  Tohjo Falls\n4  Route 3\n5  Mt. Silver\n6  Cerulean Cave 1F\n7  Cerulean Cave 2F\n8  Cerulean Cave B1F\n"
         << "9  Cianwood City\n10 Dark Cave\n11 Rock Tunnel\n12 Route 19\n13 Vemillion City\n14 Victory Road\n15 Ruins of Alph\n\n";
   
-    static constexpr array<string_view,7> itemNames1{ "Max Ether", "Pearl", "Big Pearl", "Red Shard (HG) / Blue Shard (SS)", "Yellow Shard (HG) / Green Shard (SS)",
+    static constexpr array<string_view,7> itemNames0{ "Max Ether", "Pearl", "Big Pearl", "Red Shard (HG) / Blue Shard (SS)", "Yellow Shard (HG) / Green Shard (SS)",
                             "Claw Fossil (HG) / Root Fossil (SS)", "Rare Bone" };
-    static constexpr array<string_view,8> itemNames2{ "Max Ether", "Revive", "Heart Scale", "Red Shard", "Blue Shard", "Green Shard", "Yellow Shard", "Star Piece" };
-    static constexpr array<string_view,8> itemNames3{ "Red Shard", "Yellow Shard", "Helix Fossil (HG) / Dome Fossil (SS)", "Max Ether", "Blue Shard", "Green Shard", "Old Amber", "Max Revive" };
+    static constexpr array<string_view,8> itemNames1{ "Max Ether", "Revive", "Heart Scale", "Red Shard", "Blue Shard", "Green Shard", "Yellow Shard", "Star Piece" };
+    static constexpr array<string_view,8> itemNames2{ "Red Shard", "Yellow Shard", "Helix Fossil (HG) / Dome Fossil (SS)", "Max Ether", "Blue Shard", "Green Shard", "Old Amber", "Max Revive" };
 
-    static constexpr array<const string_view*, 3> itemNames{ itemNames1.data(), itemNames2.data(), itemNames3.data() };
+    static constexpr array<const string_view*, 3> itemNames{ itemNames0.data(), itemNames1.data(), itemNames2.data() };
     short itemNameIndex, itemsTotalNumber, itemThresholdIndex, location, itemIndex;
     uint32_t currentSeed;
     bool wildEncounterCheck;
