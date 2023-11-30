@@ -130,8 +130,11 @@ int main() {
         cout << "\n\n";
         sanitizeInput<short>("Insert the wanted item number: ", itemIndex, 1, itemsTotalNumber);
 
-        cout << "\nInsert the initial seed: ";
-        scanf("%X", &currentSeed);
+        cout << "\n";
+        while ((cout << "Insert the initial seed: " && !(cin >> hex >> currentSeed)) || currentSeed >= ULONG_MAX) {
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        }
 
         cout << "\n";
         sanitizeInput<unsigned long>("Insert the current advances: ", currentAdvances, 0, ULONG_MAX);
