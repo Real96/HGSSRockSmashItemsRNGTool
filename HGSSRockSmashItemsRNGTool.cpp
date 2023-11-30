@@ -4,6 +4,7 @@
 #include <string>
 #include <string_view>
 #include <array>
+#include <regex>
 
 using namespace std;
 
@@ -24,6 +25,19 @@ void sanitizeInput(const string &output, T &index, T lowLimit, T highLimit) {
         cin.clear();
         cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
     }
+}
+
+void sanitizeHexInput(uint32_t &seed) {
+    string stringSeed;
+    regex hexRegex("^[0-9a-fA-F]{1,8}$");
+
+    while ((cout << "Insert the initial seed: ") && (!(cin >> stringSeed) || !regex_match(stringSeed, hexRegex))) {
+        cin.clear();
+        cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+    }
+
+    char* endPtr;
+    seed = strtoul(stringSeed.c_str(), &endPtr, 16);
 }
 
 uint16_t getHighSeed(uint32_t seed) {
@@ -131,10 +145,7 @@ int main() {
         sanitizeInput<short>("Insert the wanted item number: ", itemIndex, 1, itemsTotalNumber);
 
         cout << "\n";
-        while ((cout << "Insert the initial seed: ") && (!(cin >> hex >> currentSeed) || currentSeed >= ULONG_MAX)) {
-            cin.clear();
-            cin.ignore(numeric_limits<streamsize>::max(), '\n');
-        }
+        sanitizeHexInput(currentSeed);
 
         cout << "\n";
         sanitizeInput<unsigned long>("Insert the current advances: ", currentAdvances, 0, ULONG_MAX);
