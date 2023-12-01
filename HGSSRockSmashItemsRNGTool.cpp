@@ -30,9 +30,8 @@ void printLocations() {
     static constexpr array<string_view,15> locationNames{ "Cliff Cave", "Violet City", "Tohjo Falls", "Route 3", "Mt. Silver", "Cerulean Cave 1F", "Cerulean Cave 2F", "Cerulean Cave B1F",
                                                         "Cianwood City", "Dark Cave", "Rock Tunnel", "Route 19", "Vemillion City", "Victory Road", "Ruins of Alph" };
 
-    short i = 0;
-    for (auto const &location : locationNames) {
-        cout << ++i << " " << location << "\n";
+    for (size_t i = 0; i < locationNames.size(); i++) {
+        cout << i + 1 << " " << locationNames[i] << "\n";
     }
 
     cout << "\n";
