@@ -62,9 +62,10 @@ void printItemsName(short locationIndex) {
     }) };
 
     short itemsGroupIndex = locationIndex == CLIFF_CAVE ? 0 : locationIndex == RUINS_OF_ALPH ? 2 : 1;
+    strview_span itemGroupNames = itemNames[itemsGroupIndex];
 
-    for (size_t i = 0; i < itemNames[itemsGroupIndex].size(); i++) {
-        cout << "\n" << i + 1 << " " << itemNames[itemsGroupIndex][i];
+    for (size_t i = 0; i < itemGroupNames.size(); i++) {
+        cout << "\n" << i + 1 << " " << itemGroupNames[i];
     }
 }
 
