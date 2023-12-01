@@ -93,7 +93,6 @@ bool getWildFlag(short locationIndex) {
         case MT_SILVER:
         case CERULEAN_CAVE_2F:
             return false;
-            break;
         default:
             return true;
     }
