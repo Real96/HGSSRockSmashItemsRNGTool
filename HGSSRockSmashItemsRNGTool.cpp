@@ -22,14 +22,14 @@ enum Location {
     DARK_CAVE = 10,
     ROCK_TUNNEL = 11,
     ROUTE_19 = 12,
-    VEMILLION_CITY = 13,
+    VERMILION_CITY = 13,
     VICTORY_ROAD = 14,
     RUINS_OF_ALPH = 15
 };
 
 void printLocations() {
     static constexpr array<string_view, 15> locationNames{ "Cliff Cave", "Violet City", "Tohjo Falls", "Route 3", "Mt. Silver", "Cerulean Cave 1F", "Cerulean Cave 2F", "Cerulean Cave B1F",
-                                                        "Cianwood City", "Dark Cave", "Rock Tunnel", "Route 19", "Vemillion City", "Victory Road", "Ruins of Alph" };
+                                                        "Cianwood City", "Dark Cave", "Rock Tunnel", "Route 19", "Vermilion City", "Victory Road", "Ruins of Alph" };
 
     for (size_t i = 0; i < locationNames.size(); i++) {
         cout << i + 1 << " " << locationNames[i] << "\n";
