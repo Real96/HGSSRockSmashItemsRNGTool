@@ -5,6 +5,7 @@
 #include <string_view>
 #include <array>
 #include <regex>
+#include <span>
 
 using namespace std;
 
@@ -46,18 +47,23 @@ void sanitizeInput(const string &output, T &index, T lowLimit, T highLimit) {
 }
 
 void printItemsName(short locationIndex) {
-    static constexpr array<string_view, 7> itemNames0{ "Max Ether", "Pearl", "Big Pearl", "Red Shard (HG) / Blue Shard (SS)", "Yellow Shard (HG) / Green Shard (SS)",
-                                                    "Claw Fossil (HG) / Root Fossil (SS)", "Rare Bone" };
-    static constexpr array<string_view, 8> itemNames1{ "Max Ether", "Revive", "Heart Scale", "Red Shard", "Blue Shard", "Green Shard", "Yellow Shard", "Star Piece" };
-    static constexpr array<string_view, 8> itemNames2{ "Red Shard", "Yellow Shard", "Helix Fossil (HG) / Dome Fossil (SS)", "Max Ether", "Blue Shard", "Green Shard",
-                                                    "Old Amber", "Max Revive" };
+    static constexpr array itemNames0{ to_array<string_view>({"Max Ether", "Pearl", "Big Pearl", "Red Shard (HG) / Blue Shard (SS)", "Yellow Shard (HG) / Green Shard (SS)",
+                                                            "Claw Fossil (HG) / Root Fossil (SS)", "Rare Bone"}) };
+    static constexpr array itemNames1{ to_array<string_view>({"Max Ether", "Revive", "Heart Scale", "Red Shard", "Blue Shard", "Green Shard", "Yellow Shard", "Star Piece"}) };
+    static constexpr array itemNames2{ to_array<string_view>({"Red Shard", "Yellow Shard", "Helix Fossil (HG) / Dome Fossil (SS)", "Max Ether", "Blue Shard", "Green Shard",
+                                                            "Old Amber", "Max Revive"}) };
 
-    static constexpr array<const string_view*, 3> itemNames{ itemNames0.data(), itemNames1.data(), itemNames2.data() };
+    using strview_span = span<const string_view>;
 
-    short itemsTotalNumber = locationIndex == CLIFF_CAVE ? 7 : 8;
+    static constexpr array itemNames{ to_array<strview_span>({
+        strview_span(itemNames0),
+        strview_span(itemNames1),
+        strview_span(itemNames2)
+    }) };
+
     short itemsGroupIndex = locationIndex == CLIFF_CAVE ? 0 : locationIndex == RUINS_OF_ALPH ? 2 : 1;
 
-    for (short i = 0; i < itemsTotalNumber; i++) {
+    for (size_t i = 0; i < itemNames[itemsGroupIndex].size(); i++) {
         cout << "\n" << i + 1 << " " << itemNames[itemsGroupIndex][i];
     }
 }
