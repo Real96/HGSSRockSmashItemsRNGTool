@@ -123,7 +123,7 @@ bool isWantedItemCheck(uint32_t seed, short groupIndex, short index) {
     return getHighSeed(seed) % 100 >= itemThresholds[groupIndex][index - 2] && getHighSeed(seed) % 100 < itemThresholds[groupIndex][index - 1];
 }
 
-void findItem(uint32_t seed, short locationIndex, unsigned long advances, short itemsGroupThresholdIndex, short itemIndex) {
+void findItem(uint32_t seed, short locationIndex, unsigned long advances, short itemIndex) {
     uint32_t tempSeed;
     bool wildFlag = getWildFlag(locationIndex);
 
@@ -148,7 +148,7 @@ void findItem(uint32_t seed, short locationIndex, unsigned long advances, short 
 
         tempSeed = LCRNG(tempSeed);
 
-        if (isWantedItemCheck(tempSeed, itemsGroupThresholdIndex, itemIndex)) {
+        if (isWantedItemCheck(tempSeed, locationIndex == CLIFF_CAVE ? 0 : 1, itemIndex)) {
             printf("\n\nTarget seed: %08X | Target advances: %lu\n\n\n", seed, advances);
             break;
         }
@@ -180,6 +180,6 @@ int main() {
 
         advances = 0;
         advance(currentSeed, advances, currentAdvances);
-        findItem(currentSeed, locationIndex, advances, locationIndex == CLIFF_CAVE ? 0 : 1, itemIndex);
+        findItem(currentSeed, locationIndex, advances, itemIndex);
     }
 }
