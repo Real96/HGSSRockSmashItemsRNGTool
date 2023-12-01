@@ -8,8 +8,27 @@
 
 using namespace std;
 
+void printLocations() {
+    cout << "1  Cliff Cave\n2  Violet City\n3  Tohjo Falls\n4  Route 3\n5  Mt. Silver\n6  Cerulean Cave 1F\n7  Cerulean Cave 2F\n8  Cerulean Cave B1F\n"
+        << "9  Cianwood City\n10 Dark Cave\n11 Rock Tunnel\n12 Route 19\n13 Vemillion City\n14 Victory Road\n15 Ruins of Alph\n\n";
+}
+
 uint32_t LCRNG(uint32_t seed) {
     return 0x41C64E6D * seed + 0x6073;
+}
+
+void printItemsName(short index, short total) {
+    static constexpr array<string_view,7> itemNames0{ "Max Ether", "Pearl", "Big Pearl", "Red Shard (HG) / Blue Shard (SS)", "Yellow Shard (HG) / Green Shard (SS)",
+                                                    "Claw Fossil (HG) / Root Fossil (SS)", "Rare Bone" };
+    static constexpr array<string_view,8> itemNames1{ "Max Ether", "Revive", "Heart Scale", "Red Shard", "Blue Shard", "Green Shard", "Yellow Shard", "Star Piece" };
+    static constexpr array<string_view,8> itemNames2{ "Red Shard", "Yellow Shard", "Helix Fossil (HG) / Dome Fossil (SS)", "Max Ether", "Blue Shard", "Green Shard",
+                                                    "Old Amber", "Max Revive" };
+
+    static constexpr array<const string_view*, 3> itemNames{ itemNames0.data(), itemNames1.data(), itemNames2.data() };
+
+    for (int i = 0; i < total; i++) {
+        cout << "\n" << i + 1 << " " << itemNames[index][i];
+    }
 }
 
 void advance(uint32_t &seed, unsigned long &advances, unsigned long n = 1) {
@@ -56,7 +75,6 @@ bool itemCheck(uint32_t seed, short index) {
 }
 
 bool isWantedItemCheck(uint32_t seed, short nameIndex, short index) {
-    
     static constexpr array<int, 7> itemThresholds0{ 25, 45, 55, 65, 75, 95, 100 };
     static constexpr array<int, 8> itemThresholds1{ 25, 45, 55, 65, 75, 85, 95, 100 };
 
@@ -99,15 +117,8 @@ void findItem(uint32_t seed, bool wildFlag, short location, unsigned long advanc
 }
 
 int main() {
-    cout << "1  Cliff Cave\n2  Violet City\n3  Tohjo Falls\n4  Route 3\n5  Mt. Silver\n6  Cerulean Cave 1F\n7  Cerulean Cave 2F\n8  Cerulean Cave B1F\n"
-        << "9  Cianwood City\n10 Dark Cave\n11 Rock Tunnel\n12 Route 19\n13 Vemillion City\n14 Victory Road\n15 Ruins of Alph\n\n";
-  
-    static constexpr array<string_view,7> itemNames0{ "Max Ether", "Pearl", "Big Pearl", "Red Shard (HG) / Blue Shard (SS)", "Yellow Shard (HG) / Green Shard (SS)",
-                            "Claw Fossil (HG) / Root Fossil (SS)", "Rare Bone" };
-    static constexpr array<string_view,8> itemNames1{ "Max Ether", "Revive", "Heart Scale", "Red Shard", "Blue Shard", "Green Shard", "Yellow Shard", "Star Piece" };
-    static constexpr array<string_view,8> itemNames2{ "Red Shard", "Yellow Shard", "Helix Fossil (HG) / Dome Fossil (SS)", "Max Ether", "Blue Shard", "Green Shard", "Old Amber", "Max Revive" };
+    printLocations();
 
-    static constexpr array<const string_view*, 3> itemNames{ itemNames0.data(), itemNames1.data(), itemNames2.data() };
     short itemNameIndex, itemsTotalNumber, itemThresholdIndex, location, itemIndex;
     uint32_t currentSeed;
     bool wildEncounterCheck;
@@ -136,9 +147,7 @@ int main() {
                 break;
         }
 
-        for (int i = 0; i < itemsTotalNumber; i++) {
-            cout << "\n" << i + 1 << " " << itemNames[itemNameIndex][i];
-        }
+        printItemsName(itemNameIndex, itemsTotalNumber);
 
         cout << "\n\n";
         sanitizeInput<short>("Insert the wanted item number: ", itemIndex, 1, itemsTotalNumber);
