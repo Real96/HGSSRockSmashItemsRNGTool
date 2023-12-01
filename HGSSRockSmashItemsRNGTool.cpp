@@ -9,8 +9,14 @@
 using namespace std;
 
 void printLocations() {
-    cout << "1  Cliff Cave\n2  Violet City\n3  Tohjo Falls\n4  Route 3\n5  Mt. Silver\n6  Cerulean Cave 1F\n7  Cerulean Cave 2F\n8  Cerulean Cave B1F\n"
-        << "9  Cianwood City\n10 Dark Cave\n11 Rock Tunnel\n12 Route 19\n13 Vemillion City\n14 Victory Road\n15 Ruins of Alph\n\n";
+    static constexpr array<string_view,15> locationNames{ "Cliff Cave", "Violet City", "Tohjo Falls", "Route 3", "Mt. Silver", "Cerulean Cave 1F", "Cerulean Cave 2F", "Cerulean Cave B1F",
+                                                        "Cianwood City", "Dark Cave", "Rock Tunnel", "Route 19", "Vemillion City", "Victory Road", "Ruins of Alph" };
+
+    for (auto const &location : locationNames) {
+        cout << location << "\n";
+    }
+
+    cout << "\n";
 }
 
 uint32_t LCRNG(uint32_t seed) {
