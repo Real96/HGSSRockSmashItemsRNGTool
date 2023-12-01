@@ -19,8 +19,12 @@ void printLocations() {
     cout << "\n";
 }
 
-uint32_t LCRNG(uint32_t seed) {
-    return 0x41C64E6D * seed + 0x6073;
+template <typename T>
+void sanitizeInput(const string &output, T &index, T lowLimit, T highLimit) {
+    while ((cout << output) && (!(cin >> index) || (index < lowLimit || index > highLimit))) {
+        cin.clear();
+        cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+    }
 }
 
 void printItemsName(short index, short total) {
@@ -32,23 +36,8 @@ void printItemsName(short index, short total) {
 
     static constexpr array<const string_view*, 3> itemNames{ itemNames0.data(), itemNames1.data(), itemNames2.data() };
 
-    for (int i = 0; i < total; i++) {
+    for (short i = 0; i < total; i++) {
         cout << "\n" << i + 1 << " " << itemNames[index][i];
-    }
-}
-
-void advance(uint32_t &seed, unsigned long &advances, unsigned long n = 1) {
-    for (unsigned long i = 0; i < n; i++) {
-        seed = LCRNG(seed);
-        advances++;
-    }
-}
-
-template <typename T>
-void sanitizeInput(const string &output, T &index, T lowLimit, T highLimit) {
-    while ((cout << output) && (!(cin >> index) || (index < lowLimit || index > highLimit))) {
-        cin.clear();
-        cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
     }
 }
 
@@ -62,6 +51,17 @@ void sanitizeHexInput(uint32_t &seed) {
     }
 
     seed = stoul(stringSeed, nullptr, 16);
+}
+
+uint32_t LCRNG(uint32_t seed) {
+    return 0x41C64E6D * seed + 0x6073;
+}
+
+void advance(uint32_t &seed, unsigned long &advances, unsigned long n = 1) {
+    for (unsigned long i = 0; i < n; i++) {
+        seed = LCRNG(seed);
+        advances++;
+    }
 }
 
 uint16_t getHighSeed(uint32_t seed) {
