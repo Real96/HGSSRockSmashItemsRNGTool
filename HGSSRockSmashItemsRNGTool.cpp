@@ -85,7 +85,7 @@ void advance(uint32_t &seed, unsigned long &advances, unsigned long n = 1) {
     }
 }
 
-bool getWildFlag(short locationIndex) {
+bool getWildCheckFlag(short locationIndex) {
     switch (locationIndex) {
         case VIOLET_CITY:
         case TOHJO_FALLS:
@@ -123,14 +123,15 @@ bool isWantedItemCheck(uint32_t seed, short groupIndex, short index) {
     return getHighSeed(seed) % 100 >= itemThresholds[groupIndex][index - 2] && getHighSeed(seed) % 100 < itemThresholds[groupIndex][index - 1];
 }
 
-void findItem(uint32_t seed, short locationIndex, unsigned long advances, short itemIndex) {
+void findItem(short locationIndex, uint32_t seed, unsigned long advances, short itemIndex) {
     uint32_t tempSeed;
-    bool wildFlag = getWildFlag(locationIndex);
+    bool wildCheckFlag = getWildCheckFlag(locationIndex);
+    short itemsGroupThresholdIndex = locationIndex == CLIFF_CAVE ? 0 : 1;
 
     while (true) {
         tempSeed = seed;
 
-        if (wildFlag) {
+        if (wildCheckFlag) {
             tempSeed = LCRNG(tempSeed);
 
             if (encounterCheck(tempSeed, locationIndex)) {
@@ -148,7 +149,7 @@ void findItem(uint32_t seed, short locationIndex, unsigned long advances, short 
 
         tempSeed = LCRNG(tempSeed);
 
-        if (isWantedItemCheck(tempSeed, locationIndex == CLIFF_CAVE ? 0 : 1, itemIndex)) {
+        if (isWantedItemCheck(tempSeed, itemsGroupThresholdIndex, itemIndex)) {
             printf("\n\nTarget seed: %08X | Target advances: %lu\n\n\n", seed, advances);
             break;
         }
@@ -180,6 +181,6 @@ int main() {
 
         advances = 0;
         advance(currentSeed, advances, currentAdvances);
-        findItem(currentSeed, locationIndex, advances, itemIndex);
+        findItem(locationIndex, currentSeed, advances, itemIndex);
     }
 }
