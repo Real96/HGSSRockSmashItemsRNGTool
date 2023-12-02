@@ -130,30 +130,30 @@ uint16_t getHighSeed(uint32_t seed) {
 }
 
 bool encounterCheck(uint32_t seed, short index) {
-    static constexpr array<int, 15> encounterRateThresholds{ 30, 0, 0, 0, 0, 5, 0, 5, 30, 50, 20, 30, 40, 40, 20 };
+    static constexpr array<short, 15> encounterRateThresholds{ 30, 0, 0, 0, 0, 5, 0, 5, 30, 50, 20, 30, 40, 40, 20 };
 
     return getHighSeed(seed) % 100 < encounterRateThresholds[index - 1];
 }
 
 bool itemCheck(uint32_t seed, short index) {
-    static constexpr array<int, 15> itemRateThresholds{ 25, 50, 15, 10, 25, 25, 25, 30, 20, 50, 30, 20, 25, 10, 30 };
+    static constexpr array<short, 15> itemRateThresholds{ 25, 50, 15, 10, 25, 25, 25, 30, 20, 50, 30, 20, 25, 10, 30 };
 
     return getHighSeed(seed) % 100 >= itemRateThresholds[index - 1];
 }
 
-bool isWantedItemCheck(uint32_t seed, short groupIndex, short index) {
-    static constexpr array<int, 8> itemThresholds0{ 0, 25, 45, 55, 65, 75, 95, 100 };
-    static constexpr array<int, 9> itemThresholds1{ 0, 25, 45, 55, 65, 75, 85, 95, 100 };
+bool isWantedItemCheck(uint32_t seed, short thresholdsGroupIndex, short index) {
+    static constexpr array<short, 8> itemThresholds0{ 0, 25, 45, 55, 65, 75, 95, 100 };
+    static constexpr array<short, 9> itemThresholds1{ 0, 25, 45, 55, 65, 75, 85, 95, 100 };
 
-    static constexpr array<const int*, 2> itemThresholds{ itemThresholds0.data() , itemThresholds1.data() };
+    static constexpr array<const short*, 2> itemThresholds{ itemThresholds0.data() , itemThresholds1.data() };
 
-    return getHighSeed(seed) % 100 >= itemThresholds[groupIndex][index - 1] && getHighSeed(seed) % 100 < itemThresholds[groupIndex][index];
+    return getHighSeed(seed) % 100 >= itemThresholds[thresholdsGroupIndex][index - 1] && getHighSeed(seed) % 100 < itemThresholds[thresholdsGroupIndex][index];
 }
 
 void findItem(short locationIndex, uint32_t seed, unsigned long advances, short itemIndex) {
     uint32_t tempSeed;
     bool wildCheckFlag = getWildCheckFlag(locationIndex);
-    short itemsGroupThresholdIndex = locationIndex == CLIFF_CAVE ? 0 : 1;
+    short itemsThresholdsGroupIndex = locationIndex == CLIFF_CAVE ? 0 : 1;
 
     while (true) {
         tempSeed = seed;
@@ -176,7 +176,7 @@ void findItem(short locationIndex, uint32_t seed, unsigned long advances, short 
 
         tempSeed = LCRNG(tempSeed);
 
-        if (isWantedItemCheck(tempSeed, itemsGroupThresholdIndex, itemIndex)) {
+        if (isWantedItemCheck(tempSeed, itemsThresholdsGroupIndex, itemIndex)) {
             printf("\n\nTarget seed: %08X | Target advances: %lu\n\n------------------------------------------------\n\n", seed, advances);
             break;
         }
