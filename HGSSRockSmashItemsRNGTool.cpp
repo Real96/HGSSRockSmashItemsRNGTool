@@ -27,15 +27,14 @@ enum Location {
     RUINS_OF_ALPH = 15
 };
 
-void printLocations() {
-    static constexpr array<string_view, 15> locationNames{ "Cliff Cave", "Violet City", "Tohjo Falls", "Route 3", "Mt. Silver", "Cerulean Cave 1F", "Cerulean Cave 2F", "Cerulean Cave B1F",
-                                                        "Cianwood City", "Dark Cave", "Rock Tunnel", "Route 19", "Vermilion City", "Victory Road", "Ruins of Alph" };
+void printLocations(array<string_view, 15> names) {
+    cout << "Locations:\n\n";
 
-    for (size_t i = 0; i < locationNames.size(); i++) {
-        cout << i + 1 << " " << locationNames[i] << "\n";
+    for (size_t i = 0; i < names.size(); i++) {
+        cout << i + 1 << " " << names[i] << "\n";
     }
 
-    cout << "\n";
+    cout << "\n\n";
 }
 
 template <typename T>
@@ -46,7 +45,17 @@ void sanitizeInput(const string &output, T &index, T lowLimit, T highLimit) {
     }
 }
 
-void printItemsName(short locationIndex) {
+void getLocationInput(short &index, string &name) {
+    static constexpr array<string_view, 15> locationNames{ "Cliff Cave", "Violet City", "Tohjo Falls", "Route 3", "Mt. Silver", "Cerulean Cave 1F", "Cerulean Cave 2F", "Cerulean Cave B1F",
+                                                        "Cianwood City", "Dark Cave", "Rock Tunnel", "Route 19", "Vermilion City", "Victory Road", "Ruins of Alph" };
+
+    printLocations(locationNames);
+    sanitizeInput<short>("Insert the location number: ", index, 1, 15);
+    cout << "\n\n";
+    name = locationNames[index - 1];
+}
+
+void printItemsName(short locationIndex, string locationName) {
     static constexpr array itemNames0{ to_array<string_view>({ "Max Ether", "Pearl", "Big Pearl", "Red Shard (HG) / Blue Shard (SS)", "Yellow Shard (HG) / Green Shard (SS)",
                                                             "Claw Fossil (HG) / Root Fossil (SS)", "Rare Bone" }) };
     static constexpr array itemNames1{ to_array<string_view>({ "Max Ether", "Revive", "Heart Scale", "Red Shard", "Blue Shard", "Green Shard", "Yellow Shard", "Star Piece" }) };
@@ -64,9 +73,19 @@ void printItemsName(short locationIndex) {
     short itemsGroupIndex = locationIndex == CLIFF_CAVE ? 0 : locationIndex == RUINS_OF_ALPH ? 2 : 1;
     strview_span itemGroupNames = itemNames[itemsGroupIndex];
 
+    cout << locationName << " items:\n\n";
+
     for (size_t i = 0; i < itemGroupNames.size(); i++) {
-        cout << "\n" << i + 1 << " " << itemGroupNames[i];
+        cout << i + 1 << " " << itemGroupNames[i] << "\n";
     }
+
+     cout << "\n\n";
+}
+
+void getItemInput(short locationIndex, string locationName, short &itemIndex) {
+    printItemsName(locationIndex, locationName);
+    sanitizeInput<short>("Insert the wanted item number: ", itemIndex, 1, locationIndex == CLIFF_CAVE ? 7 : 8);
+    cout << "\n";
 }
 
 void sanitizeHexInput(uint32_t &seed) {
@@ -78,6 +97,7 @@ void sanitizeHexInput(uint32_t &seed) {
         cin.ignore(numeric_limits<streamsize>::max(), '\n');
     }
 
+    cout << "\n";
     seed = stoul(stringSeed, nullptr, 16);
 }
 
@@ -157,7 +177,7 @@ void findItem(short locationIndex, uint32_t seed, unsigned long advances, short 
         tempSeed = LCRNG(tempSeed);
 
         if (isWantedItemCheck(tempSeed, itemsGroupThresholdIndex, itemIndex)) {
-            printf("\n\nTarget seed: %08X | Target advances: %lu\n\n\n", seed, advances);
+            printf("\n\nTarget seed: %08X | Target advances: %lu\n\n------------------------------------------------\n\n", seed, advances);
             break;
         }
 
@@ -166,24 +186,15 @@ void findItem(short locationIndex, uint32_t seed, unsigned long advances, short 
 }
 
 int main() {
-    printLocations();
-
     short locationIndex, itemIndex;
+    string locationName;
     uint32_t currentSeed;
     unsigned long currentAdvances, advances;
 
     while (true) {
-        sanitizeInput<short>("Insert the location number: ", locationIndex, 1, 15);
-
-        printItemsName(locationIndex);
-
-        cout << "\n\n";
-        sanitizeInput<short>("Insert the wanted item number: ", itemIndex, 1, locationIndex == CLIFF_CAVE ? 7 : 8);
-
-        cout << "\n";
+        getLocationInput(locationIndex, locationName);
+        getItemInput(locationIndex, locationName, itemIndex);
         sanitizeHexInput(currentSeed);
-
-        cout << "\n";
         sanitizeInput<unsigned long>("Insert the current advances: ", currentAdvances, 0, ULONG_MAX);
 
         advances = 0;
