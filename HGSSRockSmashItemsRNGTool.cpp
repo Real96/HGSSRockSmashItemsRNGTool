@@ -122,8 +122,8 @@ bool itemCheck(uint32_t seed, short index) {
 }
 
 bool isWantedItemCheck(uint32_t seed, short groupIndex, short index) {
-    static constexpr array<int, 8> itemThresholds0{0, 25, 45, 55, 65, 75, 95, 100 };
-    static constexpr array<int, 9> itemThresholds1{0, 25, 45, 55, 65, 75, 85, 95, 100 };
+    static constexpr array<int, 8> itemThresholds0{ 0, 25, 45, 55, 65, 75, 95, 100 };
+    static constexpr array<int, 9> itemThresholds1{ 0, 25, 45, 55, 65, 75, 85, 95, 100 };
 
     static constexpr array<const int*, 2> itemThresholds{ itemThresholds0.data() , itemThresholds1.data() };
 
