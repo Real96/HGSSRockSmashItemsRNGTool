@@ -85,7 +85,6 @@ void printItemsName(short locationIndex, string locationName) {
 void getItemInput(short locationIndex, string locationName, short &itemIndex) {
     printItemsName(locationIndex, locationName);
     sanitizeInput<short>("Insert the wanted item number: ", itemIndex, 1, locationIndex == CLIFF_CAVE ? 7 : 8);
-    cout << "\n";
 }
 
 void sanitizeHexInput(uint32_t &seed) {
@@ -97,7 +96,6 @@ void sanitizeHexInput(uint32_t &seed) {
         cin.ignore(numeric_limits<streamsize>::max(), '\n');
     }
 
-    cout << "\n";
     seed = stoul(stringSeed, nullptr, 16);
 }
 
