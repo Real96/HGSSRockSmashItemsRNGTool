@@ -1,2 +1,2 @@
 # HGSSRockSmashItemsRNGTool
-This tool will let you RNG abuse rocksmash items in HGSS games
+This tool will let you RNG abuse rock smash items in HGSS games
