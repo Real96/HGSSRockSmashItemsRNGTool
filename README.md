@@ -1,2 +1,2 @@
-# Gen4RockSmashItemsRNGTool
-This too will let you RNG abuse items in HGSS games
+# HGSSRockSmashItemsRNGTool
+This tool will let you RNG abuse rock smash items in HGSS games
