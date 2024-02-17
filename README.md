@@ -6,7 +6,6 @@ This tool will let you RNG abuse rock smash items in HGSS games
     <td>Location</td>
     <td>Encounter rate</td>
     <td>Item rate</td>
-    <td>Encounters</td>
     <td>25%</td>
     <td>20%</td>
     <td colspan="2">10%</td>
@@ -20,7 +19,6 @@ This tool will let you RNG abuse rock smash items in HGSS games
     <td>Violet City</td>
     <td>-</td>
     <td>50%</td>
-    <td>...</td>
     <td rowspan="13">
       <img src="https://github.com/PokeAPI/sprites/blob/master/sprites/items/max-ether.png" title="Max Ether">
     </td>
@@ -50,78 +48,65 @@ This tool will let you RNG abuse rock smash items in HGSS games
     <td>Tohjo Falls</td>
     <td>-</td>
     <td>15%</td>
-    <td>...</td>
   </tr>
   <tr align="center">
     <td>Route 3</td>
     <td>-</td>
     <td>10%</td>
-    <td>...</td>
   </tr>
   <tr align="center">
     <td>Mt. Silver Cave</td>
     <td>-</td>
     <td>25%</td>
-    <td>...</td>
   </tr>
   <tr align="center">
     <td>Dark Cave</td>
     <td>50%</td>
     <td>50%</td>
-    <td>...</td>
   </tr>
   <tr align="center">
     <td>Cianwood City</td>
     <td>30%</td>
     <td>20%</td>
-    <td>...</td>
   </tr>
   <tr align="center">
     <td>Victory Road</td>
     <td>40%</td>
     <td>10%</td>
-    <td>...</td>
   </tr>
   <tr align="center">
     <td>Cerulean Cave (B1F)</td>
     <td>5%</td>
     <td>30%</td>
-    <td>...</td>
   </tr>
   <tr align="center">
     <td>Cerulean Cave (1F)</td>
     <td>5%</td>
     <td>25%</td>
-    <td>...</td>
   </tr>
   <tr align="center">
     <td>Cerulean Cave (2F)</td>
     <td>-</td>
     <td>25%</td>
-    <td>...</td>
   </tr>
   <tr align="center">
     <td>Vermilion City</td>
     <td>40%</td>
     <td>25%</td>
-    <td>...</td>
   </tr>
   <tr align="center">
     <td>Rock Tunnel</td>
     <td>20%</td>
     <td>30%</td>
-    <td>...</td>
   </tr>
   <tr align="center">
     <td>Route 19</td>
     <td>30%</td>
     <td>20%</td>
-    <td>...</td>
   </tr><tr align="center">
     <td>Ruins of Alph</td>
     <td>-</td>
     <td>50%</td>
-    <td>...</td>
     <td>
       <img src="https://github.com/PokeAPI/sprites/blob/master/sprites/items/red-shard.png" title="Red Shard">
     </td>
@@ -157,7 +142,6 @@ This tool will let you RNG abuse rock smash items in HGSS games
     <td>Cliff Cave</td>
     <td>-</td>
     <td>50%</td>
-    <td>...</td>
     <td>
       <img src="https://github.com/PokeAPI/sprites/blob/master/sprites/items/max-ether.png" title="Max Ether">
     </td>
