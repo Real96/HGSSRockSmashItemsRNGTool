@@ -105,8 +105,8 @@ This tool will let you RNG abuse rock smash items in HGSS games
     <td>20%</td>
   </tr><tr align="center">
     <td>Ruins of Alph</td>
-    <td>-</td>
-    <td>50%</td>
+    <td>20%</td>
+    <td>30%</td>
     <td>
       <img src="https://github.com/PokeAPI/sprites/blob/master/sprites/items/red-shard.png" title="Red Shard">
     </td>
@@ -137,8 +137,8 @@ This tool will let you RNG abuse rock smash items in HGSS games
   </tr>
   <tr align="center">
     <td>Cliff Cave</td>
-    <td>-</td>
-    <td>50%</td>
+    <td>30%</td>
+    <td>25%</td>
     <td>
       <img src="https://github.com/PokeAPI/sprites/blob/master/sprites/items/max-ether.png" title="Max Ether">
     </td>
