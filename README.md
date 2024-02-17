@@ -114,8 +114,8 @@ This tool will let you RNG abuse rock smash items in HGSS games
     <td rowspan="2">
       <img src="https://github.com/PokeAPI/sprites/blob/master/sprites/items/yellow-shard.png" title="Yellow Shard">
     </td>
-    <td><img src="https://github.com/Real96/HGSSRockSmashItemsRNGTool/assets/20956021/73eef51d-77e2-454e-a8ee-db7f962f74fb" title="HG" height="10">
-    <td><img src="https://github.com/Real96/HGSSRockSmashItemsRNGTool/assets/20956021/5dc9d411-cc38-494e-b8d6-fdca647424d5" title="SS" height="10"></td>
+    <td><img src="https://github.com/Real96/HGSSRockSmashItemsRNGTool/assets/20956021/73eef51d-77e2-454e-a8ee-db7f962f74fb" title="HG" width="15">
+    <td><img src="https://github.com/Real96/HGSSRockSmashItemsRNGTool/assets/20956021/5dc9d411-cc38-494e-b8d6-fdca647424d5" title="SS" width="15"></td>
     <td  rowspan="2"colspan="2">
       <img src="https://github.com/PokeAPI/sprites/blob/master/sprites/items/max-ether.png" title="Max Ether">
     </td>
@@ -134,10 +134,10 @@ This tool will let you RNG abuse rock smash items in HGSS games
   </tr>
   <tr align="center">
     <td>
-      <img src="https://github.com/PokeAPI/sprites/blob/master/sprites/items/helix-fossil.png" title="Helix Fossil" width="40">
+      <img src="https://github.com/PokeAPI/sprites/blob/master/sprites/items/helix-fossil.png" title="Helix Fossil">
     </td>
     <td>
-      <img src="https://github.com/PokeAPI/sprites/blob/master/sprites/items/dome-fossil.png" title="Dome Fossil" width="40">
+      <img src="https://github.com/PokeAPI/sprites/blob/master/sprites/items/dome-fossil.png" title="Dome Fossil">
     </td>
   </tr>
   <tr align="center">
@@ -153,41 +153,41 @@ This tool will let you RNG abuse rock smash items in HGSS games
     <td rowspan="2" colspan="2">
       <img src="https://github.com/PokeAPI/sprites/blob/master/sprites/items/big-pearl.png" title="Big Pearl">
     </td>
-    <td><img src="https://github.com/Real96/HGSSRockSmashItemsRNGTool/assets/20956021/73eef51d-77e2-454e-a8ee-db7f962f74fb" title="HG" height="10">
-    <td><img src="https://github.com/Real96/HGSSRockSmashItemsRNGTool/assets/20956021/5dc9d411-cc38-494e-b8d6-fdca647424d5" title="SS" height="10"></td>
-    <td><img src="https://github.com/Real96/HGSSRockSmashItemsRNGTool/assets/20956021/73eef51d-77e2-454e-a8ee-db7f962f74fb" title="HG" height="10">
-    <td><img src="https://github.com/Real96/HGSSRockSmashItemsRNGTool/assets/20956021/5dc9d411-cc38-494e-b8d6-fdca647424d5" title="SS" height="10"></td>
-    <td><img src="https://github.com/Real96/HGSSRockSmashItemsRNGTool/assets/20956021/73eef51d-77e2-454e-a8ee-db7f962f74fb" title="HG" height="10">
-    <td><img src="https://github.com/Real96/HGSSRockSmashItemsRNGTool/assets/20956021/5dc9d411-cc38-494e-b8d6-fdca647424d5" title="SS" height="10"></td>
-    <td><img src="https://github.com/Real96/HGSSRockSmashItemsRNGTool/assets/20956021/73eef51d-77e2-454e-a8ee-db7f962f74fb" title="HG" height="10">
-    <td><img src="https://github.com/Real96/HGSSRockSmashItemsRNGTool/assets/20956021/5dc9d411-cc38-494e-b8d6-fdca647424d5" title="SS" height="10"></td>
+    <td><img src="https://github.com/Real96/HGSSRockSmashItemsRNGTool/assets/20956021/73eef51d-77e2-454e-a8ee-db7f962f74fb" title="HG" width="15">
+    <td><img src="https://github.com/Real96/HGSSRockSmashItemsRNGTool/assets/20956021/5dc9d411-cc38-494e-b8d6-fdca647424d5" title="SS" width="15"></td>
+    <td><img src="https://github.com/Real96/HGSSRockSmashItemsRNGTool/assets/20956021/73eef51d-77e2-454e-a8ee-db7f962f74fb" title="HG" width="15">
+    <td><img src="https://github.com/Real96/HGSSRockSmashItemsRNGTool/assets/20956021/5dc9d411-cc38-494e-b8d6-fdca647424d5" title="SS" width="15"></td>
+    <td><img src="https://github.com/Real96/HGSSRockSmashItemsRNGTool/assets/20956021/73eef51d-77e2-454e-a8ee-db7f962f74fb" title="HG" width="15">
+    <td><img src="https://github.com/Real96/HGSSRockSmashItemsRNGTool/assets/20956021/5dc9d411-cc38-494e-b8d6-fdca647424d5" title="SS" width="15"></td>
+    <td><img src="https://github.com/Real96/HGSSRockSmashItemsRNGTool/assets/20956021/73eef51d-77e2-454e-a8ee-db7f962f74fb" title="HG" width="15">
+    <td><img src="https://github.com/Real96/HGSSRockSmashItemsRNGTool/assets/20956021/5dc9d411-cc38-494e-b8d6-fdca647424d5" title="SS" width="15"></td>
     <td rowspan="2">
       <img src="https://github.com/PokeAPI/sprites/blob/master/sprites/items/rare-bone.png" title="Rare Bone">
     </td>
     <tr>
       <td>
-        <img src="https://github.com/PokeAPI/sprites/blob/master/sprites/items/red-shard.png" title="Red Shard" width="40">
+        <img src="https://github.com/PokeAPI/sprites/blob/master/sprites/items/red-shard.png" title="Red Shard">
       </td>
       <td>
-        <img src="https://github.com/PokeAPI/sprites/blob/master/sprites/items/blue-shard.png" title="Blue Shard" width="40">
+        <img src="https://github.com/PokeAPI/sprites/blob/master/sprites/items/blue-shard.png" title="Blue Shard">
       </td>
       <td>
-        <img src="https://github.com/PokeAPI/sprites/blob/master/sprites/items/yellow-shard.png" title="Yellow Shard" width="40">
+        <img src="https://github.com/PokeAPI/sprites/blob/master/sprites/items/yellow-shard.png" title="Yellow Shard">
       </td>
       <td>
-        <img src="https://github.com/PokeAPI/sprites/blob/master/sprites/items/green-shard.png" title="Green Shard" width="40">
+        <img src="https://github.com/PokeAPI/sprites/blob/master/sprites/items/green-shard.png" title="Green Shard">
       </td>
       <td>
-        <img src="https://github.com/PokeAPI/sprites/blob/master/sprites/items/claw-fossil.png" title="Claw Fossil" width="40">
+        <img src="https://github.com/PokeAPI/sprites/blob/master/sprites/items/claw-fossil.png" title="Claw Fossil">
       </td>
       <td>
-        <img src="https://github.com/PokeAPI/sprites/blob/master/sprites/items/root-fossil.png" title="Root Fossil" width="40">
+        <img src="https://github.com/PokeAPI/sprites/blob/master/sprites/items/root-fossil.png" title="Root Fossil">
       </td>
       <td>
-        <img src="https://github.com/PokeAPI/sprites/blob/master/sprites/items/claw-fossil.png" title="Claw Fossil" width="40">
+        <img src="https://github.com/PokeAPI/sprites/blob/master/sprites/items/claw-fossil.png" title="Claw Fossil">
       </td>
       <td>
-        <img src="https://github.com/PokeAPI/sprites/blob/master/sprites/items/root-fossil.png" title="Root Fossil" width="40">
+        <img src="https://github.com/PokeAPI/sprites/blob/master/sprites/items/root-fossil.png" title="Root Fossil">
       </td>
     </tr>
   </tr>
