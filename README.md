@@ -5,7 +5,7 @@ This tool will let you RNG abuse rock smash items in HGSS games
   <tr align="center">
     <td>Location</td>
     <td>Encounter rate</td>
-    <td>Find item rate</td>
+    <td>Item rate</td>
     <td>Encounters</td>
     <td>25%</td>
     <td>20%</td>
