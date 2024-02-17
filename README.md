@@ -56,7 +56,7 @@ This tool will let you RNG abuse rock smash items in HGSS games
     <td>10%</td>
   </tr>
   <tr align="center">
-    <td>Mt. Silver Cave</td>
+    <td>Mt. Silver</td>
     <td>-</td>
     <td>25%</td>
   </tr>
