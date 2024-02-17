@@ -155,7 +155,7 @@ This tool will let you RNG abuse rock smash items in HGSS games
       <img src="https://github.com/PokeAPI/sprites/blob/master/sprites/items/red-shard.png" title="Red Shard">
     </td>
     <td>
-      <img src="https://github.com/PokeAPI/sprites/blob/master/sprites/items/red-shard.png" title="Red Shard">
+      <img src="https://github.com/PokeAPI/sprites/blob/master/sprites/items/blue-shard.png" title="Blue Shard">
     </td>
     <td>
       <img src="https://github.com/PokeAPI/sprites/blob/master/sprites/items/yellow-shard.png" title="Yellow Shard">
