@@ -134,10 +134,10 @@ This tool will let you RNG abuse rock smash items in HGSS games
   </tr>
   <tr align="center">
     <td>
-      <img src="https://github.com/PokeAPI/sprites/blob/master/sprites/items/helix-fossil.png" title="Helix Fossil">
+      <img src="https://github.com/PokeAPI/sprites/blob/master/sprites/items/helix-fossil.png" title="Helix Fossil" width="40">
     </td>
     <td>
-      <img src="https://github.com/PokeAPI/sprites/blob/master/sprites/items/dome-fossil.png" title="Dome Fossil">
+      <img src="https://github.com/PokeAPI/sprites/blob/master/sprites/items/dome-fossil.png" title="Dome Fossil" width="40">
     </td>
   </tr>
   <tr align="center">
@@ -166,28 +166,28 @@ This tool will let you RNG abuse rock smash items in HGSS games
     </td>
     <tr>
       <td>
-        <img src="https://github.com/PokeAPI/sprites/blob/master/sprites/items/red-shard.png" title="Red Shard">
+        <img src="https://github.com/PokeAPI/sprites/blob/master/sprites/items/red-shard.png" title="Red Shard" width="40">
       </td>
       <td>
-        <img src="https://github.com/PokeAPI/sprites/blob/master/sprites/items/blue-shard.png" title="Blue Shard">
+        <img src="https://github.com/PokeAPI/sprites/blob/master/sprites/items/blue-shard.png" title="Blue Shard" width="40">
       </td>
       <td>
-        <img src="https://github.com/PokeAPI/sprites/blob/master/sprites/items/yellow-shard.png" title="Yellow Shard">
+        <img src="https://github.com/PokeAPI/sprites/blob/master/sprites/items/yellow-shard.png" title="Yellow Shard" width="40">
       </td>
       <td>
-        <img src="https://github.com/PokeAPI/sprites/blob/master/sprites/items/green-shard.png" title="Green Shard">
+        <img src="https://github.com/PokeAPI/sprites/blob/master/sprites/items/green-shard.png" title="Green Shard" width="40">
       </td>
       <td>
-        <img src="https://github.com/PokeAPI/sprites/blob/master/sprites/items/claw-fossil.png" title="Claw Fossil">
+        <img src="https://github.com/PokeAPI/sprites/blob/master/sprites/items/claw-fossil.png" title="Claw Fossil" width="40">
       </td>
       <td>
-        <img src="https://github.com/PokeAPI/sprites/blob/master/sprites/items/root-fossil.png" title="Root Fossil">
+        <img src="https://github.com/PokeAPI/sprites/blob/master/sprites/items/root-fossil.png" title="Root Fossil" width="40">
       </td>
       <td>
-        <img src="https://github.com/PokeAPI/sprites/blob/master/sprites/items/claw-fossil.png" title="Claw Fossil">
+        <img src="https://github.com/PokeAPI/sprites/blob/master/sprites/items/claw-fossil.png" title="Claw Fossil" width="40">
       </td>
       <td>
-        <img src="https://github.com/PokeAPI/sprites/blob/master/sprites/items/root-fossil.png" title="Root Fossil">
+        <img src="https://github.com/PokeAPI/sprites/blob/master/sprites/items/root-fossil.png" title="Root Fossil" width="40">
       </td>
     </tr>
   </tr>
