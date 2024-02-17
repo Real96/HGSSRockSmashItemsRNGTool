@@ -119,11 +119,8 @@ This tool will let you RNG abuse rock smash items in HGSS games
     <td>
       <img src="https://github.com/PokeAPI/sprites/blob/master/sprites/items/dome-fossil.png" title="Dome Fossil">
     </td>
-    <td>
+    <td colspan="2">
       <img src="https://github.com/PokeAPI/sprites/blob/master/sprites/items/max-ether.png" title="Max Ether">
-    </td>
-    <td>
-      <img src="https://github.com/PokeAPI/sprites/blob/master/sprites/items/blue-shard.png" title="Blue Shard">
     </td>
     <td colspan="2">
       <img src="https://github.com/PokeAPI/sprites/blob/master/sprites/items/blue-shard.png" title="Blue Shard">
