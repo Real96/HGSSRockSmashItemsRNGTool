@@ -1,7 +1,5 @@
 #include <iostream>
 #include <math.h>
-#include <limits>
-#include <string>
 #include <string_view>
 #include <array>
 #include <regex>
@@ -38,24 +36,24 @@ void printLocations(array<string_view, 15> names) {
 }
 
 template <typename T>
-void sanitizeInput(const string &output, T &index, T lowLimit, T highLimit) {
-    while ((cout << output) && (!(cin >> index) || (index < lowLimit || index > highLimit))) {
+void sanitizeInput(const string output, T &value, const T lowLimit, const T highLimit) {
+    while ((cout << output) && (!(cin >> value) || (value < lowLimit || value > highLimit))) {
         cin.clear();
         cin.ignore(numeric_limits<streamsize>::max(), '\n');
     }
 }
 
-void getLocationInput(short &index, string &name) {
+void getLocationInput(short &location, string &name) {
     static constexpr array<string_view, 15> locationNames{ "Cliff Cave", "Violet City", "Tohjo Falls", "Route 3", "Mt. Silver", "Cerulean Cave 1F", "Cerulean Cave 2F", "Cerulean Cave B1F",
                                                            "Cianwood City", "Dark Cave", "Rock Tunnel", "Route 19", "Vermilion City", "Victory Road", "Ruins of Alph" };
 
     printLocations(locationNames);
-    sanitizeInput<short>("Insert the location number: ", index, 1, 15);
+    sanitizeInput<short>("Insert the location number: ", location, 1, 15);
     cout << "\n\n";
-    name = locationNames[index - 1];
+    name = locationNames[location - 1];
 }
 
-void printItemsName(short locationIndex, string locationName) {
+void printItemsName(const short location) {
     static constexpr array itemNames0{ to_array<string_view>({ "Max Ether", "Pearl", "Big Pearl", "Red Shard (HG) / Blue Shard (SS)", "Yellow Shard (HG) / Green Shard (SS)",
                                                                "Claw Fossil (HG) / Root Fossil (SS)", "Rare Bone" }) };
     static constexpr array itemNames1{ to_array<string_view>({ "Max Ether", "Revive", "Heart Scale", "Red Shard", "Blue Shard", "Green Shard", "Yellow Shard", "Star Piece" }) };
@@ -70,10 +68,8 @@ void printItemsName(short locationIndex, string locationName) {
         strview_span(itemNames2)
     }) };
 
-    short itemsGroupIndex = locationIndex == CLIFF_CAVE ? 0 : locationIndex == RUINS_OF_ALPH ? 2 : 1;
+    const short itemsGroupIndex = location == CLIFF_CAVE ? 0 : location == RUINS_OF_ALPH ? 2 : 1;
     strview_span itemGroupNames = itemNames[itemsGroupIndex];
-
-    cout << locationName << " items:\n\n";
 
     for (size_t i = 0; i < itemGroupNames.size(); i++) {
         cout << i + 1 << " " << itemGroupNames[i] << "\n";
@@ -82,14 +78,15 @@ void printItemsName(short locationIndex, string locationName) {
     cout << "\n\n";
 }
 
-void getItemInput(short locationIndex, string locationName, short &itemIndex) {
-    printItemsName(locationIndex, locationName);
-    sanitizeInput<short>("Insert the wanted item number: ", itemIndex, 1, locationIndex == CLIFF_CAVE ? 7 : 8);
+void getItemInput(const short location, const string locationName, short &item) {
+    cout << locationName << " items:\n\n";
+    printItemsName(location);
+    sanitizeInput<short>("Insert the wanted item number: ", item, 1, location == CLIFF_CAVE ? 7 : 8);
 }
 
 void sanitizeHexInput(uint32_t &seed) {
     string stringSeed;
-    regex hexRegex("^[0-9a-fA-F]{1,8}$");
+    const regex hexRegex("^[0-9a-fA-F]{1,8}$");
 
     while ((cout << "Insert the initial seed: ") && (!(cin >> stringSeed) || !regex_match(stringSeed, hexRegex))) {
         cin.clear();
@@ -99,9 +96,9 @@ void sanitizeHexInput(uint32_t &seed) {
     seed = stoul(stringSeed, nullptr, 16);
 }
 
-bool sanitizeYesNoInput(const string &output) {
+bool sanitizeYesNoInput(const string output) {
     string yesNoAnswer;
-    regex yesNoRegex("^[nyNY]$");
+    const regex yesNoRegex("^[nyNY]$");
 
     while ((cout << output) && (!(cin >> yesNoAnswer) || !regex_match(yesNoAnswer, yesNoRegex))) {
         cin.clear();
@@ -111,17 +108,17 @@ bool sanitizeYesNoInput(const string &output) {
     return toupper(yesNoAnswer[0]) == 'Y';
 }
 
-void getRNGInput(uint32_t &seed, unsigned long &advances, bool &knownSeed) {
-    knownSeed = sanitizeYesNoInput("Do you know the initial seed? (y/n) ");
+void getRNGInput(uint32_t &seed, unsigned long &advances, bool &knownSeedFlag) {
+    knownSeedFlag = sanitizeYesNoInput("Do you know the initial seed? (y/n) ");
 
-    if (knownSeed) {
+    if (knownSeedFlag) {
         sanitizeHexInput(seed);
         sanitizeInput<unsigned long>("Insert the current advances: ", advances, 0, ULONG_MAX);
     }
 }
 
-bool getWildCheckFlag(short locationIndex) {
-    switch (locationIndex) {
+bool getWildCheckFlag(short location) {
+    switch (location) {
         case VIOLET_CITY:
         case TOHJO_FALLS:
         case ROUTE_3:
@@ -133,15 +130,15 @@ bool getWildCheckFlag(short locationIndex) {
     }
 }
 
-uint16_t getHighSeed(uint32_t seed) {
+uint16_t getHighSeed(const uint32_t seed) {
     return seed >> 16;
 }
 
-uint32_t LCRNG(uint32_t seed) {
+uint32_t LCRNG(const uint32_t seed) {
     return 0x41C64E6D * seed + 0x6073;
 }
 
-uint32_t advanceRNG(uint32_t &seed, unsigned long n = 1) {
+uint32_t advanceRNG(uint32_t &seed, const unsigned long n = 1) {
     for (unsigned long i = 0; i < n; i++) {
         seed = LCRNG(seed);
     }
@@ -149,49 +146,49 @@ uint32_t advanceRNG(uint32_t &seed, unsigned long n = 1) {
     return seed;
 }
 
-bool encounterCheck(uint32_t &seed, short index) {
+bool encounterCheck(uint32_t &seed, const short location) {
     static constexpr array<short, 15> encounterRateThresholds{ 30, 0, 0, 0, 0, 5, 0, 5, 30, 50, 20, 30, 40, 40, 20 };
 
-    return getHighSeed(advanceRNG(seed)) % 100 < encounterRateThresholds[index - 1];
+    return getHighSeed(advanceRNG(seed)) % 100 < encounterRateThresholds[location - 1];
 }
 
-bool itemCheck(uint32_t &seed, short index) {
+bool itemCheck(uint32_t &seed, const short location) {
     static constexpr array<short, 15> itemRateThresholds{ 25, 50, 15, 10, 25, 25, 25, 30, 20, 50, 30, 20, 25, 10, 30 };
 
-    return getHighSeed(advanceRNG(seed)) % 100 < itemRateThresholds[index - 1];
+    return getHighSeed(advanceRNG(seed)) % 100 < itemRateThresholds[location - 1];
 }
 
-bool isWantedItemCheck(uint32_t seed, short thresholdsGroupIndex, short index) {
+bool isWantedItemCheck(uint32_t seed, const short locationThresholds, const short item) {
     static constexpr array<short, 8> itemThresholds0{ 0, 25, 45, 55, 65, 75, 95, 100 };
     static constexpr array<short, 9> itemThresholds1{ 0, 25, 45, 55, 65, 75, 85, 95, 100 };
 
     static constexpr array<const short*, 2> itemThresholds{ itemThresholds0.data() , itemThresholds1.data() };
 
-    return getHighSeed(advanceRNG(seed)) % 100 >= itemThresholds[thresholdsGroupIndex][index - 1] && getHighSeed(seed) % 100 < itemThresholds[thresholdsGroupIndex][index];
+    return getHighSeed(advanceRNG(seed)) % 100 >= itemThresholds[locationThresholds][item - 1] && getHighSeed(seed) % 100 < itemThresholds[locationThresholds][item];
 }
 
-void findItem(short locationIndex, uint32_t seed, unsigned long advances, short itemIndex) {
+void findItem(const short location, uint32_t seed, unsigned long advances, const short item) {
     for (;; advances++, advanceRNG(seed)) {
         uint32_t tempSeed = seed;
 
-        if (getWildCheckFlag(locationIndex)) {
-            if (encounterCheck(tempSeed, locationIndex)) {
+        if (getWildCheckFlag(location)) {
+            if (encounterCheck(tempSeed, location)) {
                 continue;
             }
         }
 
-        if (!itemCheck(tempSeed, locationIndex)) {
+        if (!itemCheck(tempSeed, location)) {
             continue;
         }
 
-        if (isWantedItemCheck(tempSeed, locationIndex == CLIFF_CAVE ? 0 : 1, itemIndex)) {
+        if (isWantedItemCheck(tempSeed, location == CLIFF_CAVE ? 0 : 1, item)) {
             printf("\n\nTarget seed: %08X | Target advances: %lu\n\n------------------------------------------------\n\n", seed, advances);
             return;
         }
     }
 }
 
-void findItemSeed(short locationIndex, short itemIndex) {
+void findItemSeed(const short location, const short item) {
     const short hour = 24, maxDelay = 10000;
     short minDelay;
     unsigned long maxAdvances;
@@ -202,23 +199,23 @@ void findItemSeed(short locationIndex, short itemIndex) {
     for (short ab = 0; ab < 256; ab++) {
         for (short cd = 0; cd < hour; cd++) {
             for (short efgh = minDelay; efgh < maxDelay; efgh++) {
-                uint32_t seed = ((ab << 24) | (cd << 16)) + efgh;
+                const uint32_t seed = ((ab << 24) | (cd << 16)) + efgh;
                 uint32_t tempSeed = seed;
 
                 for (unsigned long advances = 0; advances < maxAdvances; advances++, advanceRNG(tempSeed)) {
                     uint32_t tempSeed2 = tempSeed;
 
-                    if (getWildCheckFlag(locationIndex)) {
-                        if (encounterCheck(tempSeed2, locationIndex)) {
+                    if (getWildCheckFlag(location)) {
+                        if (encounterCheck(tempSeed2, location)) {
                             continue;
                         }
                     }
 
-                    if (!itemCheck(tempSeed2, locationIndex)) {
+                    if (!itemCheck(tempSeed2, location)) {
                         continue;
                     }
 
-                    if (isWantedItemCheck(tempSeed2, locationIndex == CLIFF_CAVE ? 0 : 1, itemIndex)) {
+                    if (isWantedItemCheck(tempSeed2, location == CLIFF_CAVE ? 0 : 1, item)) {
                         printf("\n\nTarget seed: %08X | Target advances: %lu\n\n------------------------------------------------\n\n", seed, advances);
                         return;
                     }
