@@ -18,7 +18,7 @@ This tool will let you RNG abuse rock smash items in HGSS games
   </tr>
   <tr align="center">
     <td>Violet City</td>
-    <td>-</td>
+    <td>100%</td>
     <td>50%</td>
     <td rowspan="13">
       <img src="https://github.com/PokeAPI/sprites/blob/master/sprites/items/max-ether.png" title="Max Ether">
@@ -47,17 +47,17 @@ This tool will let you RNG abuse rock smash items in HGSS games
   </tr>
   <tr align="center">
     <td>Tohjo Falls</td>
-    <td>-</td>
+    <td>100%</td>
     <td>15%</td>
   </tr>
   <tr align="center">
     <td>Route 3</td>
-    <td>-</td>
+    <td>100%</td>
     <td>10%</td>
   </tr>
   <tr align="center">
     <td>Mt. Silver</td>
-    <td>-</td>
+    <td>100%</td>
     <td>25%</td>
   </tr>
   <tr align="center">
@@ -87,7 +87,7 @@ This tool will let you RNG abuse rock smash items in HGSS games
   </tr>
   <tr align="center">
     <td>Cerulean Cave (2F)</td>
-    <td>-</td>
+    <td>100%</td>
     <td>25%</td>
   </tr>
   <tr align="center">
