@@ -193,8 +193,7 @@ This tool will let you RNG abuse rock smash items in HGSS games
   </tr>
 </table>
 
-
-
-
-
-
+## Compiling
+```
+g++ HGSSRockSmashItemsRNGTool.cpp -o HGSSRockSmashItemsRNGTool.exe -std=c++20 --static
+```
