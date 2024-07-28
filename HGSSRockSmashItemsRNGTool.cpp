@@ -57,8 +57,8 @@ void printItemsName(const short location) {
     static constexpr array itemNames0{ to_array<string_view>({ "Max Ether", "Pearl", "Big Pearl", "Red Shard (HG) / Blue Shard (SS)", "Yellow Shard (HG) / Green Shard (SS)",
                                                                "Claw Fossil (HG) / Root Fossil (SS)", "Rare Bone" }) };
     static constexpr array itemNames1{ to_array<string_view>({ "Max Ether", "Revive", "Heart Scale", "Red Shard", "Blue Shard", "Green Shard", "Yellow Shard", "Star Piece" }) };
-    static constexpr array itemNames2{ to_array<string_view>({ "Red Shard", "Yellow Shard", "Helix Fossil (HG) / Dome Fossil (SS)", "Max Ether", "Blue Shard", "Green Shard",
-                                                               "Old Amber", "Max Revive" }) };
+    static constexpr array itemNames2{ to_array<string_view>({ "Red Shard (HG) / Blue Shard (SS)", "Yellow Shard (HG) / Green Shard (SS)", "Helix Fossil (HG) / Dome Fossil (SS)",
+                                                               "Max Ether", "Blue Shard (HG) / Red Shard (SS)", "Green Shard (HG) / Yellow Shard (SS)", "Old Amber", "Max Revive" }) };
 
     using strview_span = span<const string_view>;
 
