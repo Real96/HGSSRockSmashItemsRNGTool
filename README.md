@@ -115,10 +115,8 @@ This tool will let you RNG abuse rock smash items in HGSS games
     <td rowspan="2">
       <img src="https://github.com/PokeAPI/sprites/blob/master/sprites/items/yellow-shard.png" title="Yellow Shard">
     </td>
-    <td>
-      <img src="https://github.com/Real96/HGSSRockSmashItemsRNGTool/assets/20956021/73eef51d-77e2-454e-a8ee-db7f962f74fb" title="HG" width="15">
-      <td><img src="https://github.com/Real96/HGSSRockSmashItemsRNGTool/assets/20956021/5dc9d411-cc38-494e-b8d6-fdca647424d5" title="SS" width="15">
-    </td>
+    <td><img src="https://github.com/Real96/HGSSRockSmashItemsRNGTool/assets/20956021/73eef51d-77e2-454e-a8ee-db7f962f74fb" title="HG" width="15"></td>
+    <td><img src="https://github.com/Real96/HGSSRockSmashItemsRNGTool/assets/20956021/5dc9d411-cc38-494e-b8d6-fdca647424d5" title="SS" width="15"></td>
     <td rowspan="2"colspan="2">
       <img src="https://github.com/PokeAPI/sprites/blob/master/sprites/items/max-ether.png" title="Max Ether">
     </td>
@@ -128,7 +126,7 @@ This tool will let you RNG abuse rock smash items in HGSS games
     <td rowspan="2"colspan="2">
       <img src="https://github.com/PokeAPI/sprites/blob/master/sprites/items/green-shard.png" title="Green Shard">
     </td>
-    <td  rowspan="2"colspan="2">
+    <td rowspan="2"colspan="2">
       <img src="https://github.com/PokeAPI/sprites/blob/master/sprites/items/old-amber.png" title="Old Amber">
     </td>
     <td rowspan="2">
@@ -156,22 +154,14 @@ This tool will let you RNG abuse rock smash items in HGSS games
     <td rowspan="2" colspan="2">
       <img src="https://github.com/PokeAPI/sprites/blob/master/sprites/items/big-pearl.png" title="Big Pearl">
     </td>
-    <td>
-      <img src="https://github.com/Real96/HGSSRockSmashItemsRNGTool/assets/20956021/73eef51d-77e2-454e-a8ee-db7f962f74fb" title="HG" width="15">
-      <td><img src="https://github.com/Real96/HGSSRockSmashItemsRNGTool/assets/20956021/5dc9d411-cc38-494e-b8d6-fdca647424d5" title="SS" width="15">
-    </td>
-    <td>
-      <img src="https://github.com/Real96/HGSSRockSmashItemsRNGTool/assets/20956021/73eef51d-77e2-454e-a8ee-db7f962f74fb" title="HG" width="15">
-      <td><img src="https://github.com/Real96/HGSSRockSmashItemsRNGTool/assets/20956021/5dc9d411-cc38-494e-b8d6-fdca647424d5" title="SS" width="15">
-    </td>
-    <td>
-      <img src="https://github.com/Real96/HGSSRockSmashItemsRNGTool/assets/20956021/73eef51d-77e2-454e-a8ee-db7f962f74fb" title="HG" width="15">
-      <td><img src="https://github.com/Real96/HGSSRockSmashItemsRNGTool/assets/20956021/5dc9d411-cc38-494e-b8d6-fdca647424d5" title="SS" width="15">
-    </td>
-    <td>
-      <img src="https://github.com/Real96/HGSSRockSmashItemsRNGTool/assets/20956021/73eef51d-77e2-454e-a8ee-db7f962f74fb" title="HG" width="15">
-      <td><img src="https://github.com/Real96/HGSSRockSmashItemsRNGTool/assets/20956021/5dc9d411-cc38-494e-b8d6-fdca647424d5" title="SS" width="15">
-    </td>
+    <td><img src="https://github.com/Real96/HGSSRockSmashItemsRNGTool/assets/20956021/73eef51d-77e2-454e-a8ee-db7f962f74fb" title="HG" width="15"></td>
+    <td><img src="https://github.com/Real96/HGSSRockSmashItemsRNGTool/assets/20956021/5dc9d411-cc38-494e-b8d6-fdca647424d5" title="SS" width="15"></td>
+    <td><img src="https://github.com/Real96/HGSSRockSmashItemsRNGTool/assets/20956021/73eef51d-77e2-454e-a8ee-db7f962f74fb" title="HG" width="15"></td>
+    <td><img src="https://github.com/Real96/HGSSRockSmashItemsRNGTool/assets/20956021/5dc9d411-cc38-494e-b8d6-fdca647424d5" title="SS" width="15"></td>
+    <td><img src="https://github.com/Real96/HGSSRockSmashItemsRNGTool/assets/20956021/73eef51d-77e2-454e-a8ee-db7f962f74fb" title="HG" width="15"></td>
+    <td><img src="https://github.com/Real96/HGSSRockSmashItemsRNGTool/assets/20956021/5dc9d411-cc38-494e-b8d6-fdca647424d5" title="SS" width="15"></td>
+    <td><img src="https://github.com/Real96/HGSSRockSmashItemsRNGTool/assets/20956021/73eef51d-77e2-454e-a8ee-db7f962f74fb" title="HG" width="15"></td>
+    <td><img src="https://github.com/Real96/HGSSRockSmashItemsRNGTool/assets/20956021/5dc9d411-cc38-494e-b8d6-fdca647424d5" title="SS" width="15"></td>
     <td rowspan="2">
       <img src="https://github.com/PokeAPI/sprites/blob/master/sprites/items/rare-bone.png" title="Rare Bone">
     </td>
