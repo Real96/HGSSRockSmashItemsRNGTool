@@ -31,7 +31,9 @@ enum Ability {
     MAGNET_PULL = 3,
     KEEN_EYE = 4,
     SERENE_GRACE = 5,
-    SUPER_LUCK = 6
+    SUPER_LUCK = 6,
+    ARENA_TRAP = 7,
+    ILLUMINATE = 8
 };
 
 void printLocations(array<string_view, 15> names) {
@@ -95,10 +97,10 @@ void getItemInput(const short location, const string locationName, short &item) 
 }
 
 void printLeadAbilities() {
-    static constexpr array<string_view, 6> abilityNames{ "None", "Suction Cups", "Magnet Pull", "Keen Eye", "Serene Grace", "Super Luck" };
+    static constexpr array<string_view, 8> abilityNames{ "None", "Suction Cups", "Magnet Pull", "Keen Eye", "Serene Grace", "Super Luck", "Arena Trap", "Illuminate" };
     cout << "Abilities:\n\n";
 
-    for (size_t i = 0; i < 6; i++) {
+    for (size_t i = 0; i < 8; i++) {
         cout << i + 1 << " " << abilityNames[i] << "\n";
     }
 
@@ -107,7 +109,7 @@ void printLeadAbilities() {
 
 void getAbilityInput(short &ability) {
     printLeadAbilities();
-    sanitizeInput<short>("Insert  number of the ability of your party leader pokemon: ", ability, 1, 6);
+    sanitizeInput<short>("Insert  number of the ability of your party leader pokemon: ", ability, 1, 8);
 }
 
 bool sanitizeYesNoInput(const string output) {
@@ -205,10 +207,21 @@ uint32_t advanceRNG(uint32_t &seed, const unsigned long n = 1) {
     return seed;
 }
 
-bool encounterCheck(uint32_t &seed, const short location) {
+bool encounterCheck(uint32_t &seed, const short location, const short ability) {
     static constexpr array<short, 15> encounterRateThresholds{ 30, 0, 0, 0, 0, 5, 0, 5, 30, 50, 20, 30, 40, 40, 20 };
+    short multiplier = 1;
 
-    return getHighSeed(advanceRNG(seed)) % 100 < encounterRateThresholds[location - 1];
+    switch (ability) {
+    case ARENA_TRAP:
+    case ILLUMINATE:
+        multiplier = 2;
+        break;
+    default:
+        multiplier = 1;
+        break;
+    }
+
+    return getHighSeed(advanceRNG(seed)) % 100 < encounterRateThresholds[location - 1] * multiplier;
 }
 
 bool itemCheck(uint32_t &seed, const short location, const short thresholdIncreaser) {
@@ -250,12 +263,12 @@ bool isWantedItemCheck(uint32_t seed, const short locationThresholds, const shor
     return getGeneratedItem(locationThresholds, advanceRNG(seed), itemIncreaser) == item;
 }
 
-void findItem(const short location, uint32_t seed, unsigned long advances, const short item, const short thresholdIncreaser, const short itemIndexIncreaser) {
+void findItem(const short location, uint32_t seed, unsigned long advances, const short item, const short thresholdIncreaser, const short itemIndexIncreaser, const short ability) {
     for (;; advances++, advanceRNG(seed)) {
         uint32_t tempSeed = seed;
 
         if (getWildCheckFlag(location)) {
-            if (encounterCheck(tempSeed, location)) {
+            if (encounterCheck(tempSeed, location, ability)) {
                 continue;
             }
         }
@@ -276,7 +289,7 @@ void findItem(const short location, uint32_t seed, unsigned long advances, const
     }
 }
 
-void findItemSeed(const short location, const short item, const short thresholdIncreaser, const short itemIndexIncreaser) {
+void findItemSeed(const short location, const short item, const short thresholdIncreaser, const short itemIndexIncreaser, const short ability) {
     const short hour = 24, maxDelay = 10000;
     short minDelay;
     unsigned long maxAdvances;
@@ -294,7 +307,7 @@ void findItemSeed(const short location, const short item, const short thresholdI
                     uint32_t tempSeed2 = tempSeed;
 
                     if (getWildCheckFlag(location)) {
-                        if (encounterCheck(tempSeed2, location)) {
+                        if (encounterCheck(tempSeed2, location, ability)) {
                             continue;
                         }
                     }
@@ -336,12 +349,12 @@ int main() {
 
         if (knownSeedFlag) {
             advanceRNG(initialSeed, currentAdvances);
-            findItem(locationIndex, initialSeed, currentAdvances, itemIndex, thresholdIncreaser, itemIndexIncreaser);
+            findItem(locationIndex, initialSeed, currentAdvances, itemIndex, thresholdIncreaser, itemIndexIncreaser, ability);
             printf("\n\n------------------------------------------------\n\n");
             continue;
         }
 
-        findItemSeed(locationIndex, itemIndex, thresholdIncreaser, itemIndexIncreaser);
+        findItemSeed(locationIndex, itemIndex, thresholdIncreaser, itemIndexIncreaser, ability);
         printf("\n\n------------------------------------------------\n\n");
     }
 }
