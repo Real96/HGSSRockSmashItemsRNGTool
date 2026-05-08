@@ -66,7 +66,7 @@ void getLocationInput(short &location, string &name) {
 
 void printItemsName(const short location) {
     static constexpr array itemNames0{ to_array<string_view>({ "Max Ether", "Pearl", "Big Pearl", "Red Shard (HG) / Blue Shard (SS)", "Yellow Shard (HG) / Green Shard (SS)",
-                                                               "Claw Fossil (HG) / Root Fossil (SS)", "Rare Bone" }) };
+                                                               "Claw Fossil (HG) / Root Fossil (SS)", "Claw Fossil (HG) / Root Fossil (SS)", "Rare Bone" }) };
     static constexpr array itemNames1{ to_array<string_view>({ "Max Ether", "Revive", "Heart Scale", "Red Shard", "Blue Shard", "Green Shard", "Yellow Shard", "Star Piece" }) };
     static constexpr array itemNames2{ to_array<string_view>({ "Red Shard (HG) / Blue Shard (SS)", "Yellow Shard (HG) / Green Shard (SS)", "Helix Fossil (HG) / Dome Fossil (SS)",
                                                                "Max Ether", "Blue Shard (HG) / Red Shard (SS)", "Green Shard (HG) / Yellow Shard (SS)", "Old Amber", "Max Revive" }) };
@@ -92,7 +92,7 @@ void printItemsName(const short location) {
 void getItemInput(const short location, const string locationName, short &item) {
     cout << locationName << " items:\n\n";
     printItemsName(location);
-    sanitizeInput<short>("Insert the wanted item number: ", item, 1, location == CLIFF_CAVE ? 7 : 8);
+    sanitizeInput<short>("Insert the wanted item number: ", item, 1, 8);
     cout << "\n\n";
 }
 
@@ -230,37 +230,24 @@ bool itemCheck(uint32_t &seed, const short location, const short thresholdIncrea
     return getHighSeed(advanceRNG(seed)) % 100 < itemRateThresholds[location - 1] + thresholdIncreaser;
 }
 
-short getGeneratedItem(const short locationThresholds, uint32_t seed, short itemIncreaser) {
-    static constexpr array itemThresholds0{ to_array<short>({ 25, 45, 55, 65, 75, 95, 100 }) };
-    static constexpr array itemThresholds1{ to_array<short>({ 25, 45, 55, 65, 75, 85, 95, 100 }) };
+short getGeneratedItem(uint32_t seed) {
+    static constexpr array<short, 8> itemThresholds{ 25, 45, 55, 65, 75, 85, 95, 100 };
 
-    using strview_span = span<const short>;
-
-    static constexpr array itemThresholds{ to_array<strview_span>({
-        span<const short>( itemThresholds0 ),
-        span<const short>( itemThresholds1 )
-    }) };
-
-    strview_span itemGroupTresholds = itemThresholds[locationThresholds];
-
-    for (short item = 0; item < itemGroupTresholds.size(); item++) {
-        uint16_t highSeed = getHighSeed(seed) % 100;
-
-        if (highSeed < itemGroupTresholds[item]) {
-            if (locationThresholds == 0 && item == 5 && highSeed < 85) {
-                itemIncreaser = 0;
-            }
-            else if (itemIncreaser) {
-                itemIncreaser = locationThresholds == 0 ? (item + 1 == 7 ? 0 : 1) : (item + 1 == 8 ? 0 : 1);
-            }
-
-            return (item + 1) + itemIncreaser;
+    for (short item = 0; item < 8; item++) {
+        if (getHighSeed(seed) % 100 < itemThresholds[item]) {
+            return item + 1;
         }
     }
 }
 
-bool isWantedItemCheck(uint32_t seed, const short locationThresholds, const short item, short itemIncreaser) {
-    return getGeneratedItem(locationThresholds, advanceRNG(seed), itemIncreaser) == item;
+bool isWantedItemCheck(uint32_t seed, const short item, short itemIncreaser) {
+    short generatedItem = getGeneratedItem(advanceRNG(seed));
+
+    if (itemIncreaser) {
+        itemIncreaser = generatedItem == 8 ? 0 : 1;
+    }
+
+    return generatedItem + itemIncreaser == item;
 }
 
 void findItem(const short location, uint32_t seed, unsigned long advances, const short item, const short thresholdIncreaser, const short itemIndexIncreaser, const short ability) {
@@ -282,7 +269,7 @@ void findItem(const short location, uint32_t seed, unsigned long advances, const
             return;
         }
 
-        if (isWantedItemCheck(tempSeed, location == CLIFF_CAVE ? 0 : 1, item, itemIndexIncreaser)) {
+        if (isWantedItemCheck(tempSeed, item, itemIndexIncreaser)) {
             printf("\n\nTarget seed: %08X | Target advances: %lu", seed, advances);
             return;
         }
@@ -321,7 +308,7 @@ void findItemSeed(const short location, const short item, const short thresholdI
                         return;
                     }
 
-                    if (isWantedItemCheck(tempSeed2, location == CLIFF_CAVE ? 0 : 1, item, itemIndexIncreaser)) {
+                    if (isWantedItemCheck(tempSeed2, item, itemIndexIncreaser)) {
                         printf("\n\nTarget seed: %08X | Target advances: %lu", seed, advances);
                         return;
                     }
